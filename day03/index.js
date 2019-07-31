@@ -78,14 +78,47 @@
 　　　　　　　＊＊＊＊＊
 　　　　　　＊＊＊＊＊＊＊
 */
-for(let i=0;i<4;i++){  // 行
-    let str =""
-    for(let k=0;k<4-i-1;k++){
-        str+=" "
-    }
+// for(let i=0;i<4;i++){  // 行
+//     let str =""
+//     for(let k=0;k<4-i-1;k++){
+//         str+=" "
+//     }
 
-    for(let j=0;j<2*(i+1)-1;j++){  //列
-        str+="*"
+//     for(let j=0;j<2*(i+1)-1;j++){  //列
+//         str+="*"
+//     }
+//     console.log(str)
+// }
+
+/*
+*****  1
+ ****  2
+  ***  3
+   **  4
+    *  5
+*/
+
+// for(let i=1;i<=5;i++){ // 行
+//     let con = ""  // 每一行的内容
+//     for(let k=0;k<i-1;k++){
+//         con+=" "
+//     }
+
+//     for(let j=1;j<=6-i;j++){
+//         con+="*"
+//     }
+//     console.log(con)
+// }
+
+
+// 九九乘法表
+
+for(let i=1;i<=9;i++){
+    let str = ""
+    for(let j=1;j<=i;j++){
+        str+=`${j}×${i}=${j*i}&nbsp;&nbsp;&nbsp;`
     }
-    console.log(str)
+    document.write(str)
+    document.write("<br>")
 }
+
