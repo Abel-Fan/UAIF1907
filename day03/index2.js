@@ -98,3 +98,58 @@ let category = ['书籍','衣服','电子产品']
 //二维数组的访问
 //二维数组的遍历
 //二维数组的基本操作
+
+// 函数
+// 定义：封装一段特定功能的代码块，以便重复调用
+
+//语法：
+/*
+创建函数：
+function 函数名([参数]){
+    特定功能的代码块
+    [return返回值]
+}
+调用函数：
+函数名()
+
+//参数：
+实参：实际参数，调用函数时传入的参数，将外部数据传入函数内
+形参：形式参数，定义函数时括号内的参数，接收实参，以便在函数内部使用
+
+
+
+*/
+
+// function san(row){
+//     for(let i=0;i<row;i++){
+//         let con = ""
+//         for(let j=0;j<=i;j++){
+//             con+="* "
+//         }
+//         console.log(con)
+//     }
+// }
+// san(10)
+// san(2)
+
+
+// 利用函数知识完成 arr.push 功能
+
+arr = [1,2,3,4,5]
+// arr.push(6)
+
+// function mypush(arr,item){
+//     arr[arr.length]=item
+//     console.log(arr)
+// }
+// mypush(arr,6)
+// mypush(arr,6)
+// mypush(arr,6)
+// mypush(arr,6)
+
+
+// 定义一个insert函数  接收两个参数 arr, item ,index  
+//,使得函数完成一个功能，在arr的index下标处插入item
+
+// 末尾删除pop(arr)
+// 首位删除 shift(arr)
