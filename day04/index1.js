@@ -108,22 +108,49 @@
 // 4 [6,5,4,3,2,1]
 // 5 [6,5,4,3,2,1]
 
-function fn2(arr){
-    for(let i=0;i<arr.length-1;i++){
-        let maxIndex = i
-        for(let j=i+1;j<arr.length;j++){ 
-           if(arr[j]>arr[maxIndex]){
-               maxIndex=j
-           }
-        }
-        if(maxIndex!=i){
-            let num = arr[i]
-            arr[i] = arr[maxIndex]
-            arr[maxIndex] = num    
-        }
-    }
-    return arr
-}
+// function fn2(arr){
+//     for(let i=0;i<arr.length-1;i++){
+//         let maxIndex = i
+//         for(let j=i+1;j<arr.length;j++){ 
+//            if(arr[j]>arr[maxIndex]){
+//                maxIndex=j
+//            }
+//         }
+//         if(maxIndex!=i){
+//             let num = arr[i]
+//             arr[i] = arr[maxIndex]
+//             arr[maxIndex] = num    
+//         }
+//     }
+//     return arr
+// }
+// console.log(fn2([1,2,3,2,1,3,5,6,4,3,2,5,9,7,8]))
 
-console.log(fn2([1,2,3,2,1,3,5,6,4,3,2,5,9,7,8]))
+// 选择排序
+//            0
+// let arr = [6,5,1,3,2,4]
+// [1,5,4,3,2,6]
+// minIndex = 2
+
+
+// function fun2(arr){
+//     for(let i=0;i<arr.length-1;i++){
+//         let minIndex = i;
+//         for(let j=i+1;j<arr.length;j++){ //比较下标
+//             if(arr[minIndex]>arr[j]){
+//                 minIndex=j
+//             }
+//         }
+//         if(minIndex!=i){
+//             let num = arr[i]
+//             arr[i]=arr[minIndex]
+//             arr[minIndex]=num
+//         }
+//     }
+//     return arr
+// }
+
+// console.log(fun2([1,2,4,56,6,7,7,3]))
+
+
 
