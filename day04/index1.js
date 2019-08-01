@@ -58,4 +58,72 @@
 
 
 // 末尾删除
+// let arr = [1,2,3]
+// function aa(arr){
+//     console.log(arr)
+//     arr=[33,44,55]
+// }
+// aa(arr)
+// console.log(arr)
+
+
+// 数组排序
+// paixu(arr)
+// 冒泡排序   选择排序
+// 冒泡排序：两两交换
+// [6,5,4,3,2,1]
+// 1、  [5,6,4,3,2,1]
+// 2、  [5,4,6,3,2,1]
+// 3、  [5,4,3,6,2,1]
+// 4、  [5,4,3,2,6,1]
+// 5、  [5,4,3,2,1,6] 
+
+// 1、[5,4,3,2,1,6]   5
+// 2、[4,3,2,1,5,6]   4
+// 3、[3,2,1,4,5,6]   3
+// 4、[2,1,3,4,5,6]   2
+// 5、[1,2,3,4,5,6]   1
+
+// function fn(arr){
+//     for(let i=0;i<arr.length-1;i++){
+//         for(let j=0;j<arr.length-i-1;j++){
+//             if(arr[j+1]>arr[j]){
+//                 let num= arr[j+1]
+//                 arr[j+1]=arr[j]
+//                 arr[j]=num
+//             }
+//         }
+//     }
+//     return arr
+// }
+// console.log(fn([3,3,4,5,6,8,6,4,3,2,8,7,5]))
+
+
+// 选择排序
+// let arr = [1,2,3,4,5,6]
+
+// 1 [6,2,3,4,5,1]
+// 2 [6,5,3,4,2,1]
+// 3 [6,5,4,3,2,1]
+// 4 [6,5,4,3,2,1]
+// 5 [6,5,4,3,2,1]
+
+function fn2(arr){
+    for(let i=0;i<arr.length-1;i++){
+        let maxIndex = i
+        for(let j=i+1;j<arr.length;j++){ 
+           if(arr[j]>arr[maxIndex]){
+               maxIndex=j
+           }
+        }
+        if(maxIndex!=i){
+            let num = arr[i]
+            arr[i] = arr[maxIndex]
+            arr[maxIndex] = num    
+        }
+    }
+    return arr
+}
+
+console.log(fn2([1,2,3,2,1,3,5,6,4,3,2,5,9,7,8]))
 
