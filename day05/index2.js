@@ -197,7 +197,94 @@ person['name']
 
 
 
-let obj = new Object()  //{}
-obj.name = "小白"
-obj.sex = "男"
-console.log(obj)
+// let obj = new Object()  //{}
+// obj.name = "小白"
+// obj.sex = "男"
+// obj.say = function(){
+//     console.log(this.name)
+// }
+// console.dir(obj)
+
+
+// class Person1{
+//     constructor(){
+//         this.name = "小白"
+//     }
+// }
+
+// function Person2(){
+//     this.name = "小白"
+// }
+// Person2.prototype = {
+//     say:function(){},
+//     run:function(){}
+// }
+
+// let p = new Person2()
+// console.dir(p)
+// console.dir(Person2)
+
+// prototype（原型） 函数的方法, __porto__ 对象的方法
+// 原型链 
+
+
+
+// 总结
+// 对象如何创建
+/*
+对象： 所要研究的 人、事物、规则、计划等都可以是对象
+类： 对象的抽象
+
+一、直接创建对象
+   1、 json
+   2、 new Object()
+二、先创建 类 然后实例化对象
+   1、通过构造函数
+   3、通过 class关键字
+
+
+*/
+
+// 对象如何调用
+/*
+对象.属性名
+对象['属性名']
+*/
+
+
+//原型以及原型链
+// 原型：实现属性共享
+/*
+function Person(){
+    属性
+}
+Person.prototype={
+    方法名:function(){}
+}
+
+
+// prototype  __proto__  函数
+// __proto__ 对象独有
+
+原型链
+
+function Person(){}
+Person.prototype={
+    say:function(){alert('我是人')}
+}
+let obj = new Person()
+
+
+
+*/
+
+// function Person(){}
+// Person.prototype={
+//     say:function(){alert('我是人')}
+// }
+// let obj = new Person()
+// console.dir(obj)
+// console.dir(Person)
+
+
+
