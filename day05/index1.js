@@ -66,19 +66,43 @@ let fn = new Function('a','b','c','alert(a+b+c)')
 //     arr1[i] = arr[i]
 // }
 
-function deepCopy(arr){
-    let newArr = []
-    for(let i=0;i<arr.length;i++){
-        if(typeof arr[i] != "object"){
-            newArr[i]=arr[i]
+// function deepCopy(arr){
+//     let newArr = []
+//     for(let i=0;i<arr.length;i++){
+//         if(typeof arr[i] != "object"){
+//             newArr[i]=arr[i]
+//         }else{
+//             newArr[i] = deepCopy(arr[i])
+//         }
+//     }
+//     return newArr
+// }
+// let arr = [1,2,3,[4,5]] 
+// let arr2 = deepCopy(arr)
+// arr[3][1] = "aa"
+// console.log(arr)
+// console.log(arr2)
+
+
+// 斐波那契数列 
+// 1 1 2 3 5 8 13 21 34
+// 0 1 2 3 4 5 6  7  8
+
+// 传参 数列的长度
+function fn(n){
+    let x=y=1
+    let arr = []
+    for(let i=0;i<n;i++){
+        if(i<=1){
+            arr.push(1)
         }else{
-            newArr[i] = deepCopy(arr[i])
+            arr.push(x+y)
+            let num = x+y
+            x = y
+            y = num 
         }
     }
-    return newArr
+    return arr
 }
-let arr = [1,2,3,[4,5]] 
-let arr2 = deepCopy(arr)
-arr[3][1] = "aa"
-console.log(arr)
-console.log(arr2)
+console.log(fn(10))
+
