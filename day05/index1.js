@@ -89,20 +89,20 @@ let fn = new Function('a','b','c','alert(a+b+c)')
 // 0 1 2 3 4 5 6  7  8
 
 // 传参 数列的长度
-function fn(n){
-    let x=y=1
-    let arr = []
-    for(let i=0;i<n;i++){
-        if(i<=1){
-            arr.push(1)
-        }else{
-            arr.push(x+y)
-            let num = x+y
-            x = y
-            y = num 
-        }
-    }
-    return arr
-}
-console.log(fn(10))
+// function fn(n){
+//     let x=y=1
+//     let arr = []
+//     for(let i=0;i<n;i++){
+//         if(i<=1){
+//             arr.push(1)
+//         }else{
+//             arr.push(x+y)
+//             let num = x+y
+//             x = y
+//             y = num 
+//         }
+//     }
+//     return arr
+// }
+// console.log(fn(10))
 
