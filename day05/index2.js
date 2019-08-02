@@ -74,6 +74,7 @@ let ele = {方法名1:方法值1,方法2:方法值2}
 // // 调用对象（属性方法）的语法
 // // 对象名.方法名
 
+
 // ele.in()
 // ele.out()
 
@@ -81,20 +82,20 @@ let ele = {方法名1:方法值1,方法2:方法值2}
 
 // Person 人
 
-let person = {
-    eat:function(){
-        console.log("我在吃饭")
-    }, //方法
-    name:"小白",// 属性
-    sex:'男',
-    age:18,
-    say:function(){
-        console.log("我的姓名是"+this.name)
-    }
-}
-person.name = "小红"
-person.say()
-person.eat()
+// let person = {
+//     eat:function(){
+//         console.log("我在吃饭")
+//     }, //方法
+//     name:"小白",// 属性
+//     sex:'男',
+//     age:18,
+//     say:function(){
+//         console.log("我的姓名是"+this.name)
+//     }
+// }
+// person.name = "小红"
+// person.say()
+// person.eat()
 
 
 // Car类
@@ -113,3 +114,90 @@ run:
 
 
 
+
+
+/*
+1、创建对象的方式
+（1）json
+let obj = {键:值,键:值}
+let person = {name:'horns',sex:'女',age:18}
+（2）通过构造函数来创建
+类：对象的抽象
+对象：类的实例化
+function Person(){
+    this.name = ""
+    this.sex = "男"
+    this.age = 1
+}
+
+let p = new Person()
+
+（3）通过类方式创建对象
+class 类名{
+    
+}
+(4) let obj = new Object()  // let obj = {}
+obj.name = "xm"
+obj.sex = "男"
+
+
+
+
+
+2、调用对象的方式
+person.name
+person['name']
+
+
+
+
+*/
+
+// let person = {name:'horns',sex:'女',age:18}
+// console.log(person.name)
+// console.log(person['name'])
+// let aa = "name"
+// console.log(person[aa])
+
+
+// function Person(){
+//     this.name = ""   // this 谁实例化 指向谁 实例化对象
+//     this.sex = "男"
+//     this.age = 1
+// }
+
+// let p = new Person()
+// let xm = new Person()
+// console.log(p.name)
+// console.log(p.sex)
+// console.log(p.age)
+
+// xm.name="小明"
+// xm.sex = "女"
+// console.log(xm.name)
+// console.log(xm.sex)
+// console.log(xm.age)
+
+
+// class Fly{
+//     constructor(){   //构造函数
+//         this.name = ""
+//         this.color = ""
+//     }
+// }
+
+// let f1 = new Fly()
+// let f2 = new Fly()
+// f1.name = "C919"
+// f1['color']="蓝&绿"
+// console.log(f1.name,f1.color)
+// f2.name = "波音"
+// f2.color = "红色"
+// console.log(f2.name,f2.color)
+
+
+
+let obj = new Object()  //{}
+obj.name = "小白"
+obj.sex = "男"
+console.log(obj)
