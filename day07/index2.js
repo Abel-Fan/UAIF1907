@@ -31,41 +31,53 @@
 
 
 
-function Clock(h,m,s){
-    this.h = h
-    this.m = m
-    this.s = s
-}
-Clock.prototype.run = function(){
+// function Clock(h,m,s){
+//     this.h = h
+//     this.m = m
+//     this.s = s
+// }
+// Clock.prototype.run = function(){
 
-    //方法1： 你可以用that来保存 Clock实例 
-//    // this // Clock实例
-//     let that = this
-//     setInterval(function(){
-//         // this  // window
-//         that.s
+//     //方法1： 你可以用that来保存 Clock实例 
+// //    // this // Clock实例
+// //     let that = this
+// //     setInterval(function(){
+// //         // this  // window
+// //         that.s
+// //     },1000)
+
+//     setInterval(()=>{
+//         this.s+=1
+//         if(this.s>=60){
+//             this.s=0
+//             this.m+=1
+//             if(this.m>=60){
+//                 this.m=0
+//                 this.h+=1
+//                 if(this.h>=24){
+//                     this.h=0
+//                 }
+//             }
+//         }
+//         console.log(`${this.h}:${this.m}:${this.s}`)
 //     },1000)
 
-    setInterval(()=>{
-        this.s+=1
-        if(this.s>=60){
-            this.s=0
-            this.m+=1
-            if(this.m>=60){
-                this.m=0
-                this.h+=1
-                if(this.h>=24){
-                    this.h=0
-                }
-            }
-        }
-        console.log(`${this.h}:${this.m}:${this.s}`)
-    },1000)
+
+// }
 
 
-}
+// let c = new Clock(10,22,30)
+// c.run()
 
+//history
 
-let c = new Clock(10,22,30)
-c.run()
+// console.dir(history)
+//  length 历史记录的数量
+//
+
+//location 地址栏
+console.dir(location)
+console.log(location.href) //当前的URL
+console.log(location.protocol) // 协议
+
 
