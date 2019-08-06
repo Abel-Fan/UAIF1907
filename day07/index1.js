@@ -52,3 +52,7 @@
 // Math.pow()
 // Math.sqrt()
 
+
+// let num = 123.126
+// console.log(num.toFixed(2))
+// console.log(num)
