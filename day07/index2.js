@@ -75,9 +75,29 @@
 //  length 历史记录的数量
 //
 
-//location 地址栏
-console.dir(location)
-console.log(location.href) //当前的URL
-console.log(location.protocol) // 协议
+// location 地址栏
+// console.dir(location)
+// console.log(location.href) //当前的URL
+// console.log(location.protocol) // 协议
+
+//document
 
 
+// let str = ""
+
+// for(let i=0;i<10;i++){
+//     let length = Math.random()*100+100
+//     str+=`<div style='width:${length}px;height:${length}px;border:1px solid rgb(${Math.random()*255},${Math.random()*255},${Math.random()*255});border-radius:50%;float:left;'></div>`
+// }
+// document.write(str)
+
+// console.log(document.documentElement)
+// console.log(document.body)
+
+
+console.log(document.getElementById("box"))
+console.log(document.getElementsByClassName("box"))
+console.log(document.getElementsByTagName("span"))
+console.log(document.querySelector("#box"))
+console.log(document.querySelector(".box"))
+console.log(document.querySelectorAll(".box"))
