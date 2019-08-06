@@ -287,4 +287,15 @@ let obj = new Person()
 // console.dir(Person)
 
 
+// 一切皆对象
+
+// let arr = [1,2,3]
+// console.dir(arr)
+
+
+let str = new String("123")
+console.dir(str)
+// let num = new Number(123)
+// console.dir(num)
+
 

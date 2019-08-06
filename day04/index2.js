@@ -107,15 +107,49 @@ function(){} //匿名函数
 
 // 名词解释
 // 闭包函数:两个嵌套的函数，内部函数使用外部函数的变量，然后在全局环境下调用内部函数时，形成闭包。用作与保护变量。
-function fun1(){
-    let aa = []
-    function fun2(data){
-        aa.push(data)
-        console.log(aa)
-    }
-    return fun2
-}
-let fun2 = fun1()
-fun2(123)
-fun2(456)
-fun2(789)
+// function fun1(){
+//     let aa = []
+//     function fun2(data){
+//         aa.push(data)
+//         console.log(aa)
+//     }
+//     return fun2
+// }
+// let fun2 = fun1()
+// fun2(123)
+// fun2(456)
+// fun2(789)
+
+// 高阶函数：参数或者返回值是另外一个函数
+// 分类：实参高阶函数  返回值高阶函数
+
+
+// function add(a,b){
+//     console.log(a+b)
+// }
+// function fn(fn,a,b){
+//     fn(a,b)
+// }
+// fn(add,10,20)
+
+// 递归：自己调用自己
+// 阶乘 9! 9*8! 
+// 完成循环的功能，必须要有终止条件
+
+// function jc(num){
+//     if(num==1){
+//         return 1
+//     }
+//     return num*jc(num-1)
+// }
+
+// console.log(jc(3))
+
+// js 默认提供了一些函数（内置顶层函数）
+// escape()
+// unescape()
+// Number()
+// String()
+// Boolean()
+// parseInt()
+// parseFloat()

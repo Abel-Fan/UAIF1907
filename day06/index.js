@@ -138,5 +138,16 @@ let array = [1,2,3,4,5,6]
 // let arr = [1,2,3,4,5,6]
 // console.log(arr.map(  item=>item*item  ))
 
-let arr = [1,2,3,4,5,6]
-console.log(arr.reverse())  //[6,5,4,3,2,1]
+// let arr = [1,2,3,4,5,6]
+// console.log(arr.reverse())  //[6,5,4,3,2,1]
+
+// console.log(Math)
+// console.log(Math.abs(-81))  // 81
+
+
+// console.log(Math.pow(2,10))  //50
+
+// console.log(Math.sqrt(64))  //8
+
+
+window.open("https://www.baidu.com","百度","width=200,height=200",false)
