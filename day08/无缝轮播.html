@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>无缝轮播</title>
+    <script src="animate.js"></script>
+</head>
+<style>
+    .banner{
+        width:1226px;
+        height:460px;
+        border:1px solid red;
+        margin:0 auto;
+        position:relative;
+        overflow: hidden;
+    }
+    .banner .imgBox{
+        width:100%;
+        height:100%;
+    }
+    .banner .imgBox a{
+        display: block;
+        width:100%;
+        height:100%;
+        position:absolute;
+        top:0;
+        left:1226px;
+        z-index:0;
+        /* transition:all 1s; */
+    }
+    .banner .imgBox a:first-child{
+        left:0;
+    }
+    .prev,.next{
+        width:30px;
+        height:69px;
+        background-color:red;
+        position:absolute;
+        top:0;
+        bottom:0;
+        margin:auto;
+        z-index: 100;
+    }
+    .next{
+        right:0;
+    }
+    .dian{
+        width:100px;
+        height:10px;
+        position:absolute;
+        z-index: 110;
+        bottom:25px;
+        right:25px;
+        background-color:red;
+    }
+    .dian div{
+        width:10px;
+        height:10px;
+        background-color:yellow;
+        border-radius: 50%;
+        float:left;
+        margin:0 5px;
+    }
+    .box{
+        width:200px;
+        height:200px;
+        background-color:red;
+    }
+</style>
+<body>
+    <div class="banner">
+        <!-- 所有层 -->
+        <div class="imgBox">
+            <a href="" class="active">
+                <img src="https://i1.mifile.cn/a4/xmad_15650061351615_PRHry.jpg" width="1226" height="460" alt="">
+            </a>
+            <a href="">
+                <img src="https://i1.mifile.cn/a4/xmad_15650807498778_pbeNT.jpg" width="1226" height="460" alt="">
+            </a>
+            <a href="">
+                <img src="https://i1.mifile.cn/a4/xmad_1564987289605_kyWJX.jpg" width="1226" height="460" alt="">
+            </a>
+            <a href="">
+                <img src="https://i1.mifile.cn/a4/xmad_15627254995865_hbFzT.jpg" width="1226" height="460" alt="">
+            </a>
+            <a href="">
+                <img src="https://i1.mifile.cn/a4/xmad_15648844793779_rCSmy.jpg" width="1226" height="460" alt="">
+            </a>
+        </div>
+        <!-- 左箭头 -->
+        <div class="prev"></div>
+        <!-- 右箭头 -->
+        <div class="next"></div>
+        <!-- 轮播点 -->
+        <div class="dian">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</body>
+<script>
+    let ceils = document.querySelectorAll(".banner .imgBox a")
+    let banner = document.querySelector(".banner")
+    let rightbtn = document.querySelector(".next")
+    let leftbtn = document.querySelector(".prev")
+    
+    let now=0,prev=0
+    let flag = true
+
+    function run(type=0){
+        flag = false
+        if(type==0){
+            now+=1
+            if(now>=ceils.length){
+                now = 0
+            }
+            ceils[now].style.left = "1226px"
+            animate(ceils[now],{left:0},500)
+            animate(ceils[prev],{left:-1226},500,function(){
+                flag = true
+            })
+        }else{
+            now-=1
+            if(now<=0){
+                now=ceils.length-1
+            }
+            ceils[now].style.left = "-1226px"
+            animate(ceils[now],{left:0},500)
+            animate(ceils[prev],{left:1226},500,function(){
+                flag = true
+            })
+        }
+        
+        prev=now
+    }
+    let t= setInterval(run,2000)
+
+    banner.onmouseenter = function(){
+        clearInterval(t)
+    }
+    banner.onmouseleave = function(){
+        t = setInterval(run,2000)
+    }
+
+    rightbtn.onclick = function(){
+        if(flag){
+            run()
+        }  
+    }
+    leftbtn.onclick = function(){
+        if(flag){
+            run(1)
+        }   
+    }
+
+
+
+</script>
+</html>
