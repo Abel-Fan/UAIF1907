@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>选项卡</title>
+    <script src="index.js"></script>
+</head>
+<style>
+.btns{
+    width:600px;
+    height:50px;
+    margin:0 auto;
+}
+.btns div{
+    width:33.33%;
+    height:100%;
+    border:1px solid red;
+    box-sizing: border-box;
+    float:left;
+}
+.btns .btnAction{
+    background-color:aqua;
+}
+.cons{
+    width:600px;
+    height:400px;
+    margin:0 auto;
+    border:1px solid red;
+    position:relative;
+}
+.cons div{
+    width:100%;
+    height:100%;
+    position:absolute;
+    top:0;
+    left:0;
+    background-color:aqua;
+    z-index:0;
+}
+.cons .conAction{
+    z-index: 20;
+}
+
+
+
+.bts{
+    width:600px;
+    height:50px;
+    margin:0 auto;
+}
+.bts div{
+    width:33.33%;
+    height:100%;
+    border:1px solid red;
+    box-sizing: border-box;
+    float:left;
+}
+.bts .btnAction{
+    background-color:aqua;
+}
+.cns{
+    width:600px;
+    height:400px;
+    margin:0 auto;
+    border:1px solid red;
+    position:relative;
+}
+.cns div{
+    width:100%;
+    height:100%;
+    position:absolute;
+    top:0;
+    left:0;
+    background-color:aqua;
+    z-index:0;
+}
+.cns .conAction{
+    z-index: 20;
+}
+
+</style>
+<body>
+    <div class="btns">
+        <div class="div btnAction">001</div>
+        <div class="div">002</div>
+        <div class = "div">003</div>
+    </div>
+    <div class="cons">
+        <div class="div conAction">001</div>
+        <div class="div">002</div>
+        <div class="div">003</div>
+    </div>
+
+    <div class="bts">
+        <div class="div btnAction">001</div>
+        <div class="div">002</div>
+        <div class = "div">003</div>
+    </div>
+    <div class="cns">
+        <div class="div conAction">001</div>
+        <div class="div">002</div>
+        <div class="div">003</div>
+    </div>
+</body>
+<script>
+SelectCard(".btns div",".cons div")
+SelectCard(".bts div",".cns div")
+
+</script>
+</html>
