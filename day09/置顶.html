@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>置顶</title>
+    <script src="animate.js"></script>
+</head>
+<style>
+body{
+    height:8000px;
+}
+.top{
+    width:50px;
+    height:50px;
+    background-color:red;
+    position: fixed;
+    bottom:50px;
+    right:50px;
+    display: none;
+}
+</style>
+<body>
+    <div class="top"></div>
+</body>
+<script>
+    let topEle = document.querySelector(".top")
+    window.onscroll = function(){
+        let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+        if(scrollTop>=1000){
+            topEle.style.display = "block"
+        }else{
+            topEle.style.display = "none"
+        }
+    }
+    topEle.onclick=function(){
+        let ele = document.documentElement || document.body
+        animate(ele,{scrollTop:0},1000)
+    }
+
+</script>
+</html>

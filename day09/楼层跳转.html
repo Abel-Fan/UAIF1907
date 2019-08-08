@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="animate.js"></script>
+</head>
+<style>
+.top{
+    width:1226px;
+    height:460px;
+    border:1px solid blue;
+    margin:30px auto;
+}
+.box{
+    width:1226px;
+    height:460px;
+    border:1px solid red;
+    margin:30px auto;
+    font-size:60px;
+    line-height:460px;
+    text-align: center;
+}
+.btns{
+    width:50px;
+    height:500px;
+    position:fixed;
+    top:0;
+    bottom:0;
+    left:30px;
+    margin:auto;
+    transition:all .5s;
+    transform: scale(0,0);
+    transform-origin: bottom left;
+}
+.btns div{
+    width:50px;
+    height:50px;
+    border:1px solid blue;
+    box-sizing: border-box;
+    line-height:50px;
+    text-align: center;
+}
+</style>
+<body>
+    <div class="top"></div>
+    <div class="box">1</div>
+    <div class="box">2</div>
+    <div class="box">3</div>
+    <div class="box">4</div>
+    <div class="box">5</div>
+    <div class="box">6</div>
+    <div class="box">7</div>
+    <div class="box">8</div>
+    <div class="box">9</div>
+    <div class="box">10</div>
+
+
+    <div class="btns">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>7</div>
+        <div>8</div>
+        <div>9</div>
+        <div>10</div>
+    </div>
+</body>
+<script>
+    let btnsEle = document.querySelector(".btns")
+    let boxs = document.querySelectorAll(".box")
+    let btns = document.querySelectorAll(".btns div")
+    
+    // arr 保存 楼层举例页面的高度
+    let arr = []
+    boxs.forEach(function(item){
+        arr.push(item.offsetTop)
+    })
+
+    window.onscroll = function(){
+        // 实现侧导航的显示隐藏
+        let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+        let value = boxs[0].offsetTop-300
+        if(scrollTop>value){
+            btnsEle.style.transform = "scale(1,1)"
+        }else{
+            btnsEle.style.transform = "scale(0,0)"
+        }
+
+
+        // 实现楼层显示
+        // 目的：滚动到一定程度显示楼层下标。
+        // findIndex :返回第一个满足条件的下标
+        // [522, 1014, 1506, 1998, 2490, 2982, 3474, 3966, 4458, 4950]
+        // 已知 ：scrollTop   距离头部200显示下标
+        let index = arr.findIndex((item)=>{
+            // 当scrollTop >322
+            if(scrollTop-190 < item){
+                return item
+            }
+        }) // 返回满足条件的下标
+        
+        btns.forEach(function(item,i){
+            if(i==index){
+                item.style.backgroundColor = "red"
+            }else{
+                item.style.backgroundColor = ""
+            }
+        })
+
+    }
+
+    btns.forEach(function(item,index){
+        item.onclick = function(){
+            let ele = document.documentElement || document.body
+            // ele.scrollTop = arr[index]-300
+            animate(ele,{scrollTop:arr[index]-300},500)
+        }
+    })
+</script>
+</html>
