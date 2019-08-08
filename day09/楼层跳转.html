@@ -46,16 +46,36 @@
 </style>
 <body>
     <div class="top"></div>
-    <div class="box">1</div>
-    <div class="box">2</div>
-    <div class="box">3</div>
-    <div class="box">4</div>
-    <div class="box">5</div>
-    <div class="box">6</div>
-    <div class="box">7</div>
-    <div class="box">8</div>
-    <div class="box">9</div>
-    <div class="box">10</div>
+    <div class="box">
+        <img src="" srcdata="aa.jpg" alt="">
+    </div>
+    <div class="box">
+        <img src="" srcdata="aa.jpg" alt="">
+    </div>
+    <div class="box">
+        <img src="" srcdata="aa.jpg" alt="">
+    </div>
+    <div class="box">
+        <img src="" srcdata="aa.jpg" alt="">
+    </div>
+    <div class="box">
+        <img src="" srcdata="aa.jpg" alt="">
+    </div>
+    <div class="box">
+        <img src="" srcdata="aa.jpg" alt="">
+    </div>
+    <div class="box">
+        <img src="" srcdata="aa.jpg" alt="">
+    </div>
+    <div class="box">
+        <img src="" srcdata="aa.jpg" alt="">
+    </div>
+    <div class="box">
+        <img src="" srcdata="aa.jpg" alt="">
+    </div>
+    <div class="box">
+        <img src="" srcdata="aa.jpg" alt="">
+    </div>
 
 
     <div class="btns">
@@ -74,6 +94,7 @@
 <script>
     let btnsEle = document.querySelector(".btns")
     let boxs = document.querySelectorAll(".box")
+    let boxsImg = document.querySelectorAll(".box img")
     let btns = document.querySelectorAll(".btns div")
     
     // arr 保存 楼层举例页面的高度
@@ -81,6 +102,7 @@
     boxs.forEach(function(item){
         arr.push(item.offsetTop)
     })
+
 
     window.onscroll = function(){
         // 实现侧导航的显示隐藏
@@ -112,6 +134,17 @@
                 item.style.backgroundColor = ""
             }
         })
+
+        // 懒加载
+        let index2 = arr.findIndex(function(item){
+            if(item>window.screen.height+scrollTop){
+                return item
+            }
+        })
+        if(boxsImg[index2].getAttribute("src")=="" && index2!=-1){
+            boxsImg[index2].setAttribute("src",boxsImg[index2].getAttribute("srcdata"))
+        }
+        
 
     }
 
