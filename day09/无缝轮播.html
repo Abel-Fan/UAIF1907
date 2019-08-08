@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>无缝轮播</title>
+    <script src="animate.js"></script>
+</head>
+<style>
+    .banner{
+        width:1226px;
+        height:460px;
+        border:1px solid red;
+        margin:0 auto;
+        position:relative;
+        overflow: hidden;   
+    }
+    .banner .imgBox{
+        width:100%;
+        height:100%;
+    }
+    .banner .imgBox a{
+        display: block;
+        width:100%;
+        height:100%;
+        position:absolute;
+        top:0;
+        left:1226px;
+        z-index:0;
+        /* transition:all 1s; */
+    }
+    .banner .imgBox a:first-child{
+        left:0;
+    }
+    .prev,.next{
+        width:30px;
+        height:69px;
+        background-color:red;
+        position:absolute;
+        top:0;
+        bottom:0;
+        margin:auto;
+        z-index: 100;
+    }
+    .next{
+        right:0;
+    }
+    .dian{
+        width:100px;
+        height:10px;
+        position:absolute;
+        z-index: 110;
+        bottom:25px;
+        right:25px;
+        background-color:red;
+    }
+    .dian div{
+        width:10px;
+        height:10px;
+        background-color:yellow;
+        border-radius: 50%;
+        float:left;
+        margin:0 5px;
+    }
+    .box{
+        width:200px;
+        height:200px;
+        background-color:red;
+    }
+</style>
+<body>
+    <div class="banner">
+        <!-- 所有层 -->
+        <div class="imgBox">
+            <a href="" class="active">
+                <img src="https://i1.mifile.cn/a4/xmad_15650061351615_PRHry.jpg" width="1226" height="460" alt="">
+            </a>
+            <a href="">
+                <img src="https://i1.mifile.cn/a4/xmad_15650807498778_pbeNT.jpg" width="1226" height="460" alt="">
+            </a>
+            <a href="">
+                <img src="https://i1.mifile.cn/a4/xmad_1564987289605_kyWJX.jpg" width="1226" height="460" alt="">
+            </a>
+            <a href="">
+                <img src="https://i1.mifile.cn/a4/xmad_15627254995865_hbFzT.jpg" width="1226" height="460" alt="">
+            </a>
+            <a href="">
+                <img src="https://i1.mifile.cn/a4/xmad_15648844793779_rCSmy.jpg" width="1226" height="460" alt="">
+            </a>
+        </div>
+        <!-- 左箭头 -->
+        <div class="prev"></div>
+        <!-- 右箭头 -->
+        <div class="next"></div>
+        <!-- 轮播点 -->
+        <div class="dian">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</body>
+<script>
+    function banner(ceilsClassName,prevClassName,nextClassName,diansClassName,bannerClassName){
+        let ceils = document.querySelectorAll(ceilsClassName)
+        let width = ceils[0].offsetWidth
+        let length = ceils.length
+        let prev = document.querySelector(prevClassName)
+        let next = document.querySelector(nextClassName)
+        let dians = document.querySelectorAll(diansClassName)
+        let now=0,after=0
+        let banner = document.querySelector(bannerClassName)
+
+        // 布局
+        ceils.forEach(function(item,index){
+            if(index!=0){
+                item.style.left= width+"px"
+            }
+        })
+        dians[0].style.backgroundColor="blue"
+
+        // 开关思想
+        let flag = true
+        // 轮播
+        function run(type=0){
+            flag = false
+            if(type==0){
+                // 下一张
+                now+=1
+                if(now>=length){
+                    now = 0
+                }
+                ceils[now].style.left=width+"px"
+                animate(ceils[now],{left:0},500)
+                animate(ceils[after],{left:-width},500,function(){
+                    flag = true
+                })
+            }else{
+                // 上一张
+                now-=1
+                if(now<0){
+                    now = length-1
+                }
+                ceils[now].style.left=-width+"px"
+                animate(ceils[now],{left:0},500)
+                animate(ceils[after],{left:width},500,function(){
+                    flag=true
+                })
+            }
+            dians.forEach(function(item,index){
+                if(index==now){
+                    item.style.backgroundColor = "blue"
+                }else{
+                    item.style.backgroundColor = "yellow"
+                }   
+            })
+            
+            after = now
+        }
+        // 自动轮播
+        let t = setInterval(run,2000)
+        // 移入暂停
+        banner.onmouseenter = function(){
+            clearInterval(t)
+        }
+        window.onblur = function(){
+            clearInterval(t)
+        }
+        window.onfocus = function(){
+            t = setInterval(run,2000)
+        }
+        banner.onmouseleave = function(){
+            t = setInterval(run,2000)
+        }
+
+        // 前后按钮
+        next.onclick = function(){
+            if(flag){
+                run()
+            }
+        }
+        prev.onclick = function(){
+            if(flag){
+                run(1)
+            }
+        }
+        // 轮播点
+        dians.forEach(function(item,index){
+           item.onclick=function(){
+                let dianIndex = now
+                if(index>dianIndex){
+                    now=index-1
+                    run()
+                }else if(index<dianIndex){
+                    now =index+1
+                    run(1)
+                }
+           }
+        })
+    }
+
+    banner(".banner .imgBox a",".prev",'.next',".dian div",".banner")
+</script>
+</html>
