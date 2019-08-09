@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+.box{
+    width:200px;
+    height:200px;
+    border:10px solid red;
+    padding:10px;
+    margin:50px;
+    overflow: hidden;
+}
+.son{
+    width:500px;
+    height:500px;
+    background-image:linear-gradient(to right,blue, pink)
+}
+
+</style>
+<body>
+    <div class="box">
+        <div class="son"></div>
+    </div>
+</body>
+<script>
+let box = document.querySelector(".box")
+console.log("offsetWidth",box.offsetWidth)  // 实际宽
+console.log("offsetHeight",box.offsetHeight)
+console.log("scrollWidth",box.scrollWidth)
+console.log("scrollHeight",box.scrollHeight)
+console.log(box.clientWidth)  // content + padding
+</script>
+</html>
