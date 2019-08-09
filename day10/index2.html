@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>事件</title>
+</head>
+<style>
+.box{
+    width:200px;
+    height:200px;
+    border:1px solid red;
+}
+
+</style>
+<body>
+    <div class="box" contenteditable="true"></div>
+</body>
+<script>
+    // 事件定义： JavaScript所侦测到的用户的行为或浏览器的行为。
+    // 事件组成:
+    //     事件源: 触发谁的事件
+    //     事件处理程序: 事件触发执行功能
+
+    let box = document.querySelector(".box")
+    // 事件的创建
+    // 方式一：
+    /*
+    box.onclick = function(){
+        alert(123)
+    }
+    box.onclick = function(){
+        alert(456)
+    }
+    */
+    // 方式二：新式浏览器
+    /*
+    box.addEventListener("click",function(){
+        alert(123)
+    })  // 参数：事件名 事件处理程序
+    box.addEventListener("click",function(){
+        alert(456)
+    })
+    */
+    // 方式二：IE
+    //box.attachEvent(事件名,事件处理程序)
+    // box.onclick=function(){
+    //     alert(123)
+    // }
+    
+    // 移出事件
+    // 事件源.removeEventListener(事件名,事件处理程序)
+    // let fn =function(){
+    //     alert(123)
+    // }
+    // box.addEventListener("click",fn)
+    // box.removeEventListener("click",fn)
+    // 兼容性处理
+    // box.addEventListener?box.addEventListener() :box.attachEvent()
+
+
+    // 键盘事件
+    /*
+    onkeydown 键盘按下
+    onkeyup 键盘抬起
+    onkeypress 键盘按下(不包含特殊功能按键)
+    */
+    // box.addEventListener("keypress",function(){
+    //     console.log(123)
+    // })
+
+    // 鼠标事件
+    /*
+    onmouseenter
+    onmouseleave
+    onmousemove
+
+    onclick
+    ondblclick
+    onmouseup
+    onmousedown
+    */
+    
+    // 窗口事件
+    /*
+    onload
+    onunload
+    */
+
+    // 表单时间
+    /*
+    onfocus
+    onblur
+    onsubmit 用户提交表单
+    oninput 用户输入
+    onchange 内容发生改变
+    onselect 选中内容
+    */
+
+    // 移动端事件
+    /*
+    ontouchstart  触摸开始
+    ontouchmove  触摸
+    ontouchend   触摸结束
+    */
+
+
+</script>
+</html>
