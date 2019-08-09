@@ -20,29 +20,34 @@ function create(){
     // 创建元素节点
     let div = document.createElement("div")
     // 创建属性节点
-    let styleEle = document.createAttribute("style")
+    // let styleEle = document.createAttribute("style")
     let width = Math.random()*50+50
     let red = parseInt(Math.random()*255)
-    console.log(red)
+    // console.log(red)
     let green = parseInt(Math.random()*255)
     let blue = parseInt(Math.random()*255)
-    styleEle.nodeValue = `width:${width}px;height:${width}px;background-color:rgb(${red},${green},${blue});border-radius:50%;`
+    // styleEle.nodeValue = `width:${width}px;height:${width}px;background-color:rgb(${red},${green},${blue});border-radius:50%;`
 
-    //设置属性节点
-    div.setAttributeNode(styleEle)
+    // //设置属性节点
+    // div.setAttributeNode(styleEle)
+
+    div.setAttribute("style",`width:${width}px;height:${width}px;background-color:rgb(${red},${green},${blue});border-radius:50%;`)
+
 
     // 创建文本节点
     index+=1
-    let text = document.createTextNode(`第${index}个`)
+    // let text = document.createTextNode(`第${index}个`)
     
-    // text.nodeValue = index
-    div.appendChild(text)
+    // // text.nodeValue = index
+    // div.appendChild(text)
+    
 
     //注释节点
-    let comment = document.createComment(`第${index}个`)
-    div.append(comment)
+    // let comment = document.createComment(`第${index}个`)
+    // div.append(comment)
 
-
+    // div.innerText = `第${index}个 <!--${index}-->`
+    div.innerHTML = `第${index}个 <!--${index}-->`
 
     //添加到文档树中
     // document.body.appendChild(div)  //添加到body最后
