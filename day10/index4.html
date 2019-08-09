@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" class="add" value="add" onclick="create()">
+    <input type="button" value="remove" class="remove">
+
+</body>
+<script>
+    let index = 0
+    let arr = []
+
+
+function create(){
+    // 创建元素节点
+    let div = document.createElement("div")
+    // 创建属性节点
+    let styleEle = document.createAttribute("style")
+    let width = Math.random()*50+50
+    let red = parseInt(Math.random()*255)
+    console.log(red)
+    let green = parseInt(Math.random()*255)
+    let blue = parseInt(Math.random()*255)
+    styleEle.nodeValue = `width:${width}px;height:${width}px;background-color:rgb(${red},${green},${blue});border-radius:50%;`
+
+    //设置属性节点
+    div.setAttributeNode(styleEle)
+
+    // 创建文本节点
+    index+=1
+    let text = document.createTextNode(`第${index}个`)
+    
+    // text.nodeValue = index
+    div.appendChild(text)
+
+    //注释节点
+    let comment = document.createComment(`第${index}个`)
+    div.append(comment)
+
+
+
+    //添加到文档树中
+    // document.body.appendChild(div)  //添加到body最后
+    document.body.insertBefore(div,document.querySelector(".add"))
+
+
+
+    
+    arr.push(div)
+
+
+
+}
+
+
+let input = document.querySelector(".remove")
+input.onclick = function(){
+    document.body.removeChild(arr.pop())
+}
+
+
+</script>
+</html>
