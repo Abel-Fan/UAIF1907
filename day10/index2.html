@@ -7,15 +7,20 @@
     <title>事件</title>
 </head>
 <style>
+body{
+    margin:0;
+}
 .box{
     width:200px;
     height:200px;
     border:1px solid red;
+    margin-left:100px;
 }
 
 </style>
 <body>
     <div class="box" contenteditable="true"></div>
+    <a href="https://www.baidu.com">百度</a>
 </body>
 <script>
     // 事件定义： JavaScript所侦测到的用户的行为或浏览器的行为。
@@ -156,9 +161,38 @@
     //     ele.stopPropagation? ele.stopPropagation(): ele.cancelBubble = true
     //     console.log("box 冒泡")
     // },false)
+    // 
+    
+    // 阻止浏览器默认行为
+    // 浏览器默认行为：a链接跳转  页面中右击菜单栏 form表单回车提交表单
+
+    // let a = document.querySelector("a")
+    // a.onclick = function(event){
+    //     event = event || window.event  // 获取事件对象
+    //     event.preventDefault ? event.preventDefault() : event.returnValue=false
+    // }
+    // document.oncontextmenu=function(event){
+    //     event = event || window.event  // 获取事件对象
+    //     event.preventDefault ? event.preventDefault() : event.returnValue=false
+    // }
+
+    // 目标事件源
+    // document.onclick = function(event){
+    //     console.dir(event.target) //目标事件源，记录具体触发事件的事件源
+    // }
+
+    //
+    // box.onclick = function(event){
+    //     console.log("clientX",event.clientX)
+    //     console.log("clientY",event.clientY)
+    //     console.log("offsetX",event.offsetX)
+    //     console.log("offsetY",event.offsetY)
+    //     console.log("screenX",event.screenX)
+    //     console.log("screenY",event.screenY)
+    // }
 
     
-
+    
 
 
 </script>
