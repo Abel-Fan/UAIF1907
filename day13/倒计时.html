@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="datetime-local" class="datetime">
+    <input type="button" value="倒计时" class="btn">
+    <div class="box">
+        <span class="day">60</span>天
+        <span class="hour">60</span>时
+        <span class="min">20</span>分钟
+        <span class="sec">20</span>秒钟
+    </div>
+</body>
+<script>
+    let dateEle = document.querySelector(".datetime")
+    let btn = document.querySelector(".btn")
+    let day = document.querySelector(".day")
+    let hour = document.querySelector(".hour")
+    let min = document.querySelector(".min")
+    let sec = document.querySelector(".sec")
+    let future = ""
+    let flag = true
+    btn.onclick = function(){
+        future = new Date(dateEle.value) 
+        if(future && flag){
+            flag = false
+            // 设置只读
+            dateEle.setAttribute("readonly","readonly")
+            // 开始倒计时
+            setInterval(update,1000)
+        }
+        
+    }
+
+    function update(){
+        let now = new Date()
+        let offset = Math.floor((future.getTime()-now.getTime())/1000)
+        // 天
+        let dayNum = Math.floor(offset/(60*60*24))
+        day.innerText = dayNum
+        // 小时
+        let hourNum = Math.floor(offset%(60*60*24)/(60*60))
+        hour.innerText = hourNum
+        // 分钟
+        let minNum = Math.floor((offset%(60*60*24))%(60*60)/60)
+        min.innerText = minNum
+        // 秒
+        let secNum = Math.floor(offset%(60*60*24)%(60*60)%60)
+        sec.innerText = secNum
+
+    }
+    
+</script>
+</html>
