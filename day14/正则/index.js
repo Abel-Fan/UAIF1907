@@ -1,7 +1,5 @@
 let arr1 = ['99912341234',"15723553456",'a1251566234','136121348590',"13635353667","17634666535"]
-let str1 = `<div class="box">
-<div class="son">this is div</div>
-</div>`
+
 let str2 = "<span>this is span</span>"
 
 // 正则
@@ -42,6 +40,7 @@ let str2 = "<span>this is span</span>"
 \s  空
 \S  非空
 \b  单词边界
+.   所有字符
 */
 // let re = /i\b/
 // let arr = ['a','b','c','1'," ",'2','3',9,10,"_","%b%"]
@@ -63,7 +62,7 @@ let str2 = "<span>this is span</span>"
 // + 一个或多个   * 0个或多个  ? 1个或0个
 
 // 特殊用法
-// ()分组    |或
+// ()分组    |或   . 任意内容
 
 // re = /^(136|157|176)\d{8}$/
 // arr1.forEach((item)=>{
@@ -71,13 +70,45 @@ let str2 = "<span>this is span</span>"
 // })
 
 //匹配邮箱
-let arr = [
-    '842615663@qq.com',
-    'wetjih@163.com',
-    'we234tjih@163.cn',
-    'we234tjih@qq.cn',
-    'wqeotq345@yahoo.com.cn',
-    '842615663@qq',
-    '842615663qq.com',
-    '@qq.com'
-]
+// let arr = [
+//     '842615663@qq.com',
+//     'wetjih@163.com',
+//     'we234tjih@163.cn',
+//     'we234tjih@qq.cn',
+//     'wqeotq345@yahoo.com.cn',
+//     '842615663@qq',
+//     '842615663qq.com',
+//     '@qq.com'
+// ]
+// let re = /^\w+@(qq|163|yahoo)\.(com|cn)(\.cn)?$/
+// arr.forEach((item)=>{
+//     console.log(re.exec(item))
+// })
+
+
+// let str = 'http://soso.huitu.com/search/sdfaag.html?kw=中元节'
+// let str3 = "https://www.baidu.com/sdfa/asdf/?name=horns&age=18"
+
+// let re = /(http:\/\/|https:\/\/)([\w,.]+)\/([\w,\/,\.]*)\?([\w,=,\u4e00-\u9fa5,&]*)/
+// console.log(re.exec(str3))
+
+
+// 特点 ：正则表达式在匹配时 都是 采用贪婪模式
+// ?
+// let str = "a12345a67890a"
+// let re = /a\w+?a/
+// console.log(re.exec(str))
+
+let str1 = `<div class="box">
+<div class="son">this is div</div>
+</div>`
+
+let re = /<[\w,\s,=,",']+>\n<[\w,\s,=,",']+>([\w,\s]+)<[\w,\s,=,",',\/]+>\n<[\w,\s,=,",',\/]+>/
+console.log(re.exec(str1))
+let str3 = `<div class="box">
+    <div class="son1">this is box</div>
+    <div class="son2">this is box</div>
+    <div class="son3">this is box</div>
+    <div class="son4">this is box</div>
+    <div class="son5">this is box</div>
+</div>`

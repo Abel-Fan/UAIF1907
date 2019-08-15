@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>正则总结</title>
+</head>
+<body>
+    
+</body>
+<script>
+// 正则
+// 正则表达式：用来描述或匹配一系列符合某种规则的字符串的表达式
+// js
+// 正则对象如何创建
+// 语法：
+// 1、 let re = new RegExp("正则表达式",模式)
+//     g 全局 i 忽略大小写 m 多行（结合^$使用）
+// 2、 let re = /表达式/模式
+// 常用方法：
+// re.exec(str) 返回通过re正则表达式匹配的信息 特殊数组 null
+// re.test(str) str是否符合正则表达式所匹配的规则，true false
+
+// 二、正则表达式怎么写
+// 1、元字符
+/*
+\w \W
+\s \S
+\d \D
+\b
+.
+*/
+// 2、原子表
+/*
+[1-9]
+[1,2]
+[1-9,a-z,A-Z]
+[\w,\t]
+[^]
+*/
+// 3、数量
+/*
+{1}
+{1,8}
+{8,}
+*
++
+?
+*/
+// 4、正则 贪婪特性  变吝啬 在数量后加?
+// 5、边界 ^ $  \b
+// 6、组()
+//  x(?=y) 匹配x后紧跟y
+//  x(?!y) 匹配x后不是y
+//  (?<=y)x 匹配x前面紧跟y的
+//  (?<!y)x 匹配x前面不是y的
+// let str = "this is div"
+// let re = /(?<!\s)i/g
+// console.log(re.exec(str))
+// console.log(re.exec(str))
+// console.log(re.exec(str))
+// (?:) 只匹配不捕获
+// let str = 'http://soso.huitu.com/search/sdfaag.html?kw=中元节'
+// let str3 = "https://www.baidu.com/sdfa/asdf/?name=horns&age=18"
+
+// let re = /(?:http:\/\/|https:\/\/)([\w,.]+)\/([\w,\/,\.]*)\?([\w,=,\u4e00-\u9fa5,&]*)/
+// console.log(re.exec(str3))
+
+// let str1 = "<div>this is div</div>"
+// let str2 = "<div>this is div</p>"
+// let re = /<(\w+)>[\w,\s]+<\/\1>/
+// \1 相当于 (\w+)
+
+// console.log(re.exec(str1))
+// console.log(re.exec(str2))
+
+
+
+
+</script>
+</html>
