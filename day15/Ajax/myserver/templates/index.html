@@ -9,24 +9,49 @@
 </head>
 <body>
     欢迎来到UAIF1907主页
-    <input type="button" onclick="request()">
+    <input type="button" onclick="request()" value="点击">
     <div class="bigBox"></div>
+
+    <form action="" method="post">
+        <input type="text" name="username">
+        <input type="text" name="password">
+        <input type="submit">
+    </form>
 </body>
 <script>
+// 原生js
+// function request(){
+//     // 创建 XMLHttpRequest 
+//     let xhr = new XMLHttpRequest()
+//     // 状态修改时间
+//     xhr.onreadystatechange=function(){
+//         if(xhr.readyState == 4){
+//             $(xhr.responseText).appendTo($(".bigBox"))
+//         }
+//     }
+//     xhr.open("get","http://192.168.1.204:8888/ydh/")
+//     xhr.send()
+// }
 
-function request(){
-    // 创建 XMLHttpRequest 
-    let xhr = new XMLHttpRequest()
-    // 状态修改时间
-    xhr.onreadystatechange=function(){
-        if(xhr.readyState == 4){
-            $(xhr.responseText).appendTo($(".bigBox"))
-        }
-    }
-    xhr.open("get","http://192.168.1.204:8888/ydh/")
-    xhr.send()
-}
+// jQuery方式 Ajax 
 
+// $.get()
+
+// function request(){
+//     $.get("http://192.168.1.204:8888/ydh/",{'age':60},
+//         function(data){
+//             console.log(data)
+//         },"json"
+//     )
+// }
+
+// jQuery $.post()
+
+// function request(){
+//     $.post("http://192.168.1.204:8888/login",{'username':"admin",'password':123456},function(data){
+//         alert(data)
+//     },"text")
+// }
 
 
 
