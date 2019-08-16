@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>UAIF1907</title>
+    <script src="static/jquery.js"></script>
+</head>
+<body>
+    欢迎来到UAIF1907主页
+    <input type="button" onclick="request()">
+    <div class="bigBox"></div>
+</body>
+<script>
+
+function request(){
+    // 创建 XMLHttpRequest 
+    let xhr = new XMLHttpRequest()
+    // 状态修改时间
+    xhr.onreadystatechange=function(){
+        if(xhr.readyState == 4){
+            $(xhr.responseText).appendTo($(".bigBox"))
+        }
+    }
+    xhr.open("get","http://192.168.1.204:8888/ydh/")
+    xhr.send()
+}
+
+
+
+
+
+</script>
+</html>
