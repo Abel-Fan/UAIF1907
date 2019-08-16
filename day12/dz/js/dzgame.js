@@ -114,7 +114,9 @@ window.onload = function(){
                             return item
                         }
                     })
-                    this.removeChild(index)
+                    if(index!=-1){
+                        this.removeChild(index)
+                    }
                 }
             }
         }

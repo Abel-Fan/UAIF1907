@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>无缝轮播</title>
-    <script src="animate.js"></script>
+    <title>轮播图</title>
+    <script src="../jquery.js"></script>
 </head>
 <style>
     .banner{
@@ -14,7 +14,6 @@
         border:1px solid red;
         margin:0 auto;
         position:relative;
-        overflow: hidden;   
     }
     .banner .imgBox{
         width:100%;
@@ -26,12 +25,14 @@
         height:100%;
         position:absolute;
         top:0;
-        left:1226px;
-        z-index:0;
-        /* transition:all 1s; */
-    }
-    .banner .imgBox a:first-child{
         left:0;
+        transition:opacity .5s;
+        z-index:0;
+        opacity: 0;
+    }
+    .banner .imgBox .active{
+        z-index:90;
+        opacity: 1;
     }
     .prev,.next{
         width:30px;
@@ -62,11 +63,6 @@
         border-radius: 50%;
         float:left;
         margin:0 5px;
-    }
-    .box{
-        width:200px;
-        height:200px;
-        background-color:red;
     }
 </style>
 <body>
@@ -104,61 +100,66 @@
     </div>
 </body>
 <script>
-    let ceils = document.querySelectorAll(".banner .imgBox a")
-    let banner = document.querySelector(".banner")
-    let rightbtn = document.querySelector(".next")
-    let leftbtn = document.querySelector(".prev")
-    
-    let now=0,prev=0
-    let flag = true
-
-    function run(type=0){
-        flag = false
-        if(type==0){
-            now+=1
-            if(now>=ceils.length){
-                now = 0
-            }
-            ceils[now].style.left = "1226px"
-            animate(ceils[now],{left:0},500)
-            animate(ceils[prev],{left:-1226},500,function(){
-                flag = true
-            })
-        }else{
-            now-=1
-            if(now<0){
-                now=ceils.length-1
-            }
-            ceils[now].style.left = "-1226px"
-            animate(ceils[now],{left:0},500)
-            animate(ceils[prev],{left:1226},500,function(){
-                flag = true
-            })
+let imgs = $(".imgBox a")
+let next = $(".next")
+let prev = $(".prev")
+let banner = $(".banner")
+let dians = $(".dian div")
+let index=0
+function run(type=0){
+    if(type==0){
+        index+=1
+        if(index>=imgs.length){
+            index=0
         }
-        
-        prev=now
+    }else{
+        index-=1
+        if(index<0){
+            index=imgs.length-1
+        }
     }
-    let t= setInterval(run,2000)
+   
+    imgs.css({
+        opacity:0,
+        zIndex:0
+    }).eq(index)
+    .css({
+        opacity:1,
+        zIndex:10 
+    })
 
-    banner.onmouseenter = function(){
-        clearInterval(t)
-    }
-    banner.onmouseleave = function(){
-        t = setInterval(run,2000)
-    }
-
-    rightbtn.onclick = function(){
-        if(flag){
-            run()
-        }  
-    }
-    leftbtn.onclick = function(){
-        if(flag){
-            run(1)
-        }   
-    }
+    dians.css('background-color',"yellow").eq(index).css('background-color',"green")
+}
+let t = setInterval(run,2000)
 
 
+banner.hover(function(){
+    clearInterval(t)
+},function(){
+    t = setInterval(run,2000)
+})
+
+next.click(function(){
+    run()
+})
+prev.click(function(){
+    run(1)
+})
+
+dians.click(function(){
+    let i = $(this).index()
+    index = i
+    imgs.css({
+        opacity:0,
+        zIndex:0
+    }).eq(index)
+    .css({
+        opacity:1,
+        zIndex:10 
+    })
+
+    dians.css('background-color',"yellow").eq(index).css('background-color',"green")
+})
 
 </script>
 </html>

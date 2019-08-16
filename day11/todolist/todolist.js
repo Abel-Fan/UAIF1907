@@ -60,11 +60,3 @@ window.onload = function(){
         }
     }
 }
-
-
-/*
-
-[{title: "mysql集群", done:     }, {title: "打字游戏", done: true}, {title: "啊士大夫", done: true},…]
-
-
-*/
