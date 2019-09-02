@@ -120,4 +120,91 @@ arr = [1,2,3,4]
 # print(arr)
 # print(dir(arr))
 
+# str1 = "山西硬汉科技有限公司"
+# str2 = "山西优逸客科技有限公司"
+# str3 = "陕西优逸客科技有限公司"
+# print(str2[:-4])
 
+# 元组
+# t1 = ()
+# 注意
+"""
+1、可以定义没有元素的元组
+2、也可以定义只有一个元素的元组 (1,)
+3、元组是不可改变的列表
+"""
+# arr1 = [1,2,3]
+#
+# t1 = (1,2,3)
+# t1[0] = 'a'
+
+# t1 = ([1,2],[3,4])
+# t1[0][0] = 'a'
+# print(t1)
+
+# 字典 dict
+# d1 = {'name':'xb','age':19}
+# name = 'name1'
+# d1 = {(1,2,4):'xb','age':19}
+# print(d1)
+# 注意
+# 1. 字典的键值是没有顺序的
+# 2. 字典的键是不可变量（  数字类型 字符串 None True False   ）
+
+# 字典的基本操作
+# 增
+# d1 = {'name':'xb','age':19}
+# d1['sex'] = '男'
+# print(d1)
+#
+# d1.update({'sex':'男'})
+# print(d1)
+
+# 删除
+# d1.pop("name")
+# d1.popitem()  # 末位删除
+# del d1['name']
+# d1.clear()
+# print(d1)
+
+# 修改
+# d1['name'] = ""
+
+# 访问
+# print(d1['name'])
+# print(d1.get('sex','暂无'))
+
+# 集合 set
+# s = {1,2,3,4,5,6}
+# 注意：集合是不重复的
+
+# 集合基本操作
+# 增加
+# s = {1,2,3,4,5,6}
+# s.update({7,8,9})
+# s.update("abcdef")
+# s.update(['aa','bb'])
+# s.add()
+# print(s)
+
+
+# 删除
+# s = {1,2,3,4,5,6}
+# s1 = {5,6,7,8,9}
+# s.pop()   # 首位删除
+# s.remove(2)
+# s.clear()
+# print(s)
+
+# 交集
+# print(s&s1)
+# 并集
+# print(s|s1)
+# 补集
+# print(s^s1)
+
+# int float bool None list tuple dict set
+# 可变数据类型：list dict set
+
+# 测试数据类型
+# type()
