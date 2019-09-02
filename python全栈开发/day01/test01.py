@@ -80,7 +80,7 @@ a=b=c=1
 # print(str1[-1])
 # 切片
 # 语法 "abcdef"[start:end:step]
-str1 = "山西优逸客科技有限公司"
+# str1 = "山西优逸客科技有限公司"
 # print(str1[2:5:1])
 # start 开始的下标，默认 0
 # end 结束前的下标  默认 length
@@ -88,5 +88,36 @@ str1 = "山西优逸客科技有限公司"
 # print(str1[::])
 # print(str1[-5:-1])
 # print(str1[-1:-5:-1])
+
+# None
+# bool True False
+
+# 列表：
+# arr = []
+# 注意：
+"""
+1、可以定义空列表
+2、可以定义只有一个元素的列表
+3、元素可以是任意类型
+"""
+# 列表的操作
+# 增加
+# arr = []
+# arr.append() # 末位添加
+# arr.append("abc")
+# arr.insert(0,"123")
+# print(arr)
+# 访问
+# arr[index]
+# 修改
+# arr[index]
+# 删除
+arr = [1,2,3,4]
+# arr.remove(1)
+# arr.pop(0)
+# arr.clear()
+# del arr[0]
+# print(arr)
+# print(dir(arr))
 
 
