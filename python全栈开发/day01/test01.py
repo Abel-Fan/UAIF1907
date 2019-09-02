@@ -257,3 +257,51 @@ arr = [1,2,3,4]
 # del
 
 # 运算符的优先级
+
+
+# 流程控制
+
+# 分支语句
+
+# if 条件:
+#     代码块
+# elif 条件2:
+#     代码块
+# else:
+#     代码块
+
+# 循环语句
+# for
+# while
+# while 条件:
+#     pass
+#
+# arr = [1,2,3,4,5,6]
+#
+# for item in arr:
+#     print(item)
+
+# arr = range(1,100,1)   # 生成生成器
+# print(list(arr))
+
+# for i in range(0,10):
+#     print(i)
+
+# break continue
+
+# for i in range(0,10):
+#     print(i)
+#     if i==5:
+#         break
+# else:
+#     print("结束")
+
+
+# 数据类型转换
+# int()
+# float()
+# str()
+# bool()
+# dict()
+# set()
+# tuple()
