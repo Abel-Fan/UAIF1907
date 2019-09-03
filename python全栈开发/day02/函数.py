@@ -202,31 +202,77 @@ import time
 # login()
 # fn2 = authLogin(fn2)
 # fn2(123)
-
-def allTime(type):
-    def newFn1(fn):
-        def newFn(*args,**kwargs):
-            start = time.time()
-            if type==0:
-                fn(*args,**kwargs)
-                end = time.time()
-                print(f"总时间:{end-start}")
-            elif type==1:
-                fn(*args, **kwargs)
-                print(f"开始时间:{start}")
-            elif type==2:
-                fn(*args, **kwargs)
-                end = time.time()
-                print(f"结束时间:{end}")
-        return newFn
-    return newFn1
-
-@allTime(0)
-def fn(a):
-    time.sleep(1)
-    print(a)
-
 #
-fn("你好")
+# def allTime(type):
+#     def newFn1(fn):
+#         def newFn(*args,**kwargs):
+#             start = time.time()
+#             if type==0:
+#                 fn(*args,**kwargs)
+#                 end = time.time()
+#                 print(f"总时间:{end-start}")
+#             elif type==1:
+#                 fn(*args, **kwargs)
+#                 print(f"开始时间:{start}")
+#             elif type==2:
+#                 fn(*args, **kwargs)
+#                 end = time.time()
+#                 print(f"结束时间:{end}")
+#         return newFn
+#     return newFn1
+#
+# @allTime(0)
+# def fn(a):
+#     time.sleep(1)
+#     print(a)
+#
+# #
+# fn("你好")
+#
 
+
+# 嵌套装饰器
+# def endTime(fn):
+#     def newFn(*args,**kwargs):
+#         print("endtime")
+#         fn(*args,**kwargs)
+#         end = time.time()
+#         print(f"结束时间为{end}")
+#     return newFn
+#
+#
+#
+# def startTime(fn):
+#     def newFn(*args,**kwargs):
+#         print("starttime")
+#         start = time.time()
+#         print(f"开始时间为:{start}")
+#         fn(*args,**kwargs)
+#     return newFn
+#
+# @endTime
+# @startTime
+# def fn(a):
+#     time.sleep(1)
+#     print(a)
+#
+# fn("hello")
+
+
+# 作用域  global nonlocal
+name = "小白"
+def fn():
+    # global name
+    name = "小红"
+    print(name)  # 小红
+    def newFn():
+        # global name
+        nonlocal name
+        name = "小黑"
+        print(name) # 小黑
+    newFn()
+    print(name)
+
+fn()
+print(name)  # 小白
 
