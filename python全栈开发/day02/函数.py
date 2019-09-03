@@ -127,26 +127,76 @@ def fn(a,b,c):
 # 特点，原则：1.不改变原函数   2.不改变原函数的调用方式  3.同时满足 1 and 2
 import time
 
-def fn():
-    time.sleep(1)
-    print("hello world")
 
-def fn1():
-    time.sleep(1)
-    print("hello")
-
-def fn2(fn):
-    def newFn():
-        start = time.time()
-        fn()
-        end = time.time()
-        print(f"总时间为：{end-start}")
-    return newFn
+#
+# def fn2(fn):
+#     def newFn():
+#         start = time.time()
+#         fn()
+#         end = time.time()
+#         print(f"总时间为：{end-start}")
+#     return newFn
 
 # fn2(fn1)()
 # fn2(fn)()
-fn = fn2(fn)
-fn1 = fn2(fn1)
+# fn = fn2(fn)
+# fn1 = fn2(fn1)
+#
+# fn()
+# fn1()
 
-fn()
-fn1()
+
+# def fn2(fn):
+#     def newFn():
+#         start = time.time()
+#         fn()
+#         end = time.time()
+#         print(f"总时间为：{end-start}")
+#     return newFn
+#
+# @fn2
+# def fn():
+#     time.sleep(1)
+#     print("hello world")
+#
+# @fn2
+# def fn1():
+#     time.sleep(1)
+#     print("hello")
+#
+# fn()
+# fn1()
+
+
+staus = 0   # 0 没有登录  1 登录了
+
+def login():
+    global staus
+    username = input("请输入用户名")  # str
+    password = input("请输入密码")
+    if username == "admin" and password=="123456":
+        staus = 1
+        print("登录成功")
+    else:
+        print("登录失败")
+
+
+def authLogin(fn):
+    def newFn():
+        if staus==1:
+            fn()
+        else:
+            login()
+    return newFn
+
+@authLogin
+def fn1(id):
+    print("成绩查看页面%s"%id)
+
+@authLogin
+def fn2(id):
+    print("课程查看页面%s"%id)
+
+login()
+fn1(10)
+fn2(10)
