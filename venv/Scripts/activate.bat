@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set "VIRTUAL_ENV=D:\工作\带课班级资料\UIAIF1907\讲课内容\python全栈开发\day01\venv"
+set "VIRTUAL_ENV=C:\Users\yangd\Desktop\UIAIF1907\讲课内容\venv"
 
 if not defined PROMPT (
     set "PROMPT=$P$G"

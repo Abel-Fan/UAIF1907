@@ -1,4 +1,4 @@
-#!D:\工作\带课班级资料\UIAIF1907\讲课内容\python全栈开发\day01\venv\Scripts\python.exe -x
+#!C:\Users\yangd\Desktop\UIAIF1907\讲课内容\venv\Scripts\python.exe -x
 # EASY-INSTALL-ENTRY-SCRIPT: 'pip==19.0.3','console_scripts','pip3'
 __requires__ = 'pip==19.0.3'
 import re
