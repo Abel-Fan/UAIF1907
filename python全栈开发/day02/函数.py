@@ -167,36 +167,66 @@ import time
 # fn()
 # fn1()
 
+#
+# staus = 0   # 0 没有登录  1 登录了
+# #
+# def login():
+#     global staus
+#     username = input("请输入用户名")  # str
+#     password = input("请输入密码")
+#     if username == "admin" and password=="123456":
+#         staus = 1
+#         print("登录成功")
+#     else:
+#         print("登录失败")
 
-staus = 0   # 0 没有登录  1 登录了
+# 万能传参
+# def authLogin(fn):
+#     def newFn(*args,**kwargs):
+#         if staus==1:
+#             fn(*args,**kwargs)
+#         else:
+#             login()
+#     return newFn
+# #
+# # @authLogin
+# def fn1(id):
+#     print("成绩查看页面%s"%id)
+#
+# # @authLogin
+# def fn2(id):
+#     print("课程查看页面%s"%id)
+#
+#
+#
+# login()
+# fn2 = authLogin(fn2)
+# fn2(123)
 
-def login():
-    global staus
-    username = input("请输入用户名")  # str
-    password = input("请输入密码")
-    if username == "admin" and password=="123456":
-        staus = 1
-        print("登录成功")
-    else:
-        print("登录失败")
+def allTime(type):
+    def newFn1(fn):
+        def newFn(*args,**kwargs):
+            start = time.time()
+            if type==0:
+                fn(*args,**kwargs)
+                end = time.time()
+                print(f"总时间:{end-start}")
+            elif type==1:
+                fn(*args, **kwargs)
+                print(f"开始时间:{start}")
+            elif type==2:
+                fn(*args, **kwargs)
+                end = time.time()
+                print(f"结束时间:{end}")
+        return newFn
+    return newFn1
+
+@allTime(0)
+def fn(a):
+    time.sleep(1)
+    print(a)
+
+#
+fn("你好")
 
 
-def authLogin(fn):
-    def newFn():
-        if staus==1:
-            fn()
-        else:
-            login()
-    return newFn
-
-@authLogin
-def fn1(id):
-    print("成绩查看页面%s"%id)
-
-@authLogin
-def fn2(id):
-    print("课程查看页面%s"%id)
-
-login()
-fn1(10)
-fn2(10)
