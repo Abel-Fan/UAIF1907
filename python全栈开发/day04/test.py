@@ -51,11 +51,11 @@ import csv
 # 持久化存储
 #
 import pickle
-# arr = ['name',19,123,True]
+arr = ['name',19,123,True]
 
 # 写入
-# with open("data.txt","rb") as f:
-    # pickle.dump(arr,f)
-    # arr = pickle.load(f)
-    # print(arr)
-    # print(arr[0])
+with open("data.txt","rb") as f:
+    pickle.dump(arr,f)
+    arr = pickle.load(f)
+    print(arr)
+    print(arr[0])

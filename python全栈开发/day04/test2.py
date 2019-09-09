@@ -1,10 +1,10 @@
 # xlwt  写入数据到excel
 # xlrd  从excel中读数据
 # python-docx  world文档包
-import xlrd,xlwt
-
-book = xlrd.open_workbook("data1.xlsx")
-sheet1 = book.sheet_by_index(0)
+# import xlrd,xlwt
+#
+# book = xlrd.open_workbook("data1.xlsx")
+# sheet1 = book.sheet_by_index(0)
 # 表名
 # print(sheet1.name)
 # 行数
@@ -22,15 +22,11 @@ sheet1 = book.sheet_by_index(0)
 # print(data.ctype)  # 1
 # print(data.value)  # 男
 
-[
-    {
-        'classname':'WUIF1903',
-        'classcon':['全栈-13',],
-        '布道师':"王琦",
-        '教室':'507实训室'
-    },
- {},{},
-    {
-        '提升老师':[],
-        '助教老师':[]
-    }]
+# try:
+#     pass
+# finally
+
+# x = None
+# x2 = x
+# x2 = False
+# print(x)
