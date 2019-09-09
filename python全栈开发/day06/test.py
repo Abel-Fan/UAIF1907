@@ -116,20 +116,74 @@ for i in [1,2,3,4]:
 #     print(res)
 
 
-class Mycontext:
-    def __init__(self,filename):
-        self.filename = filename
-    def __enter__(self):
-        print("文件打开")
-        self.f = open(self.filename,"r")
-        return self.f
-    def __exit__(self, exc_type, exc_val, exc_tb):
-        print("文件关闭")
-        self.f.close()
-        print(exc_val)
-        return True
+# class Mycontext:
+#     def __init__(self,filename):
+#         self.filename = filename
+#     def __enter__(self):
+#         print("文件打开")
+#         self.f = open(self.filename,"r")
+#         return self.f
+#     def __exit__(self, exc_type, exc_val, exc_tb):
+#         print("文件关闭")
+#         self.f.close()
+#         print(exc_val)
+#         return True
+#
+# with Mycontext("demo.txt") as f:
+#     res = f.read()
+#     print(1/0)
+#     print(res)
 
-with Mycontext("demo.txt") as f:
-    res = f.read()
-    print(1/0)
-    print(res)
+# from contextlib import closing
+# from urllib.request import urlopen
+#
+# with closing( urlopen('https://movie.douban.com/')) as f:
+#     res = f.read().decode()
+#     print(res)
+
+# try:
+#     # 可能有异常的代码
+#     num = int(input("请输入一个数"))
+#     print(num/0)
+# except ValueError as v:
+#     # 出现异常的处理方式
+#     print(v)
+# except ZeroDivisionError as z:
+#     print(z)
+# else:
+#     # 没有错误执行else
+#     pass
+# finally:
+#     # 一定会执行
+#     pass
+
+
+# class ShortInputExcept(Exception):
+#     def __init__(self,min,num):
+#         """
+#         :param min: 最小输入
+#         :param num: 本次输入
+#         """
+#         self.min = min
+#         self.num = num
+#
+#     def __str__(self):
+#         return '字符串长度不足%s,目前为%s'%(self.min,self.num)
+#
+# name = input("请输入你的名字")
+# try:
+#     if len(name)<2:
+#         print(123)
+#         raise ShortInputExcept(2,len(name))
+# except ShortInputExcept as e:
+#     print("长度不足")
+
+#
+# class Person:
+#     def __init__(self,name,age):
+#         self.name = name
+#         self.age = age
+#     def __str__(self):
+#         return "<Person %s %s>"%(self.name,self.age)
+# p = Person("小明",19)
+# print(p)
