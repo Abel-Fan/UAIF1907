@@ -187,3 +187,8 @@ for i in [1,2,3,4]:
 #         return "<Person %s %s>"%(self.name,self.age)
 # p = Person("小明",19)
 # print(p)
+
+# 五子棋游戏方法
+# 绘制棋盘
+# 落子（黑棋落子，白棋落子）
+# 游戏规则（判断输赢）
