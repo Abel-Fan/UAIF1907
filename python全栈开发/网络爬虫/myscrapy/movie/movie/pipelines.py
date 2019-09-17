@@ -6,12 +6,6 @@
 # See: https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 
 
-class DoubanPipeline(object):
+class MoviePipeline(object):
     def process_item(self, item, spider):
-        print(item)
-        return item
-
-class DoubanPipeline2(object):
-    def process_item(self, item, spider):
-        del item['info']
         return item
