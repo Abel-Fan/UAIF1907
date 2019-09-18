@@ -8,7 +8,7 @@
 from scrapy import signals
 
 
-class XingkongSpiderMiddleware(object):
+class MiddleSpiderMiddleware(object):
     # Not all methods need to be defined. If a method is not defined,
     # scrapy acts as if the spider middleware does not modify the
     # passed objects.
@@ -56,7 +56,7 @@ class XingkongSpiderMiddleware(object):
         spider.logger.info('Spider opened: %s' % spider.name)
 
 
-class XingkongDownloaderMiddleware(object):
+class MiddleDownloaderMiddleware(object):
     # Not all methods need to be defined. If a method is not defined,
     # scrapy acts as if the downloader middleware does not modify the
     # passed objects.
@@ -102,10 +102,27 @@ class XingkongDownloaderMiddleware(object):
     def spider_opened(self, spider):
         spider.logger.info('Spider opened: %s' % spider.name)
 
-class myDownloaderMiddleware:
-    def process_request(self,request, spider):
-        print("下载前")
-        # pass
+
+class MyDownMi:
+    def process_request(self,request,spider):
+        from fake_useragent import UserAgent
+        ua = UserAgent()
+        request.headers['User-Agent'] = ua.random
+
     def process_response(self,request,response,spider):
-        print("下载后")
+        print('MyDownMi  1 response')
         return response
+
+class MyDownMi2:
+    def __init__(self):
+        from middle.settings import PROXYS
+        from random import choice
+        self.proxys = PROXYS
+    def process_request(self,request,spider):
+        request.meta['proxy'] = choice(self.PROXYS)
+    def process_response(self,request,response,spider):
+        print('MyDownMi  2 response')
+        return response
+    def process_exception():
+        pass
+    
