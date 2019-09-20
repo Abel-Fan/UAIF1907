@@ -142,50 +142,196 @@ class Condition(lock=RLock)  默认是递归锁
 方法：
 acquire()  上锁
 release() 释放锁
-wait(timeout=) 等待 阻塞  知道 被通知
-wait_for(predicate,timeout=)  predicate 是一个函数 返回 True False
+
+wait(timeout=) 等待(释放锁) 阻塞(等待被通知)
 notify(n=) 通知 唤醒n个线程
 
+
+wait_for(predicate,timeout=)  predicate 是一个函数 返回 True False
 notify_all() 唤醒所有线程
 """
-from threading import Condition
-import time
-con = Condition()
+# from threading import Condition
+# import time
+# con = Condition(lock=Lock())
+#
+# arr = []
+#
+# class XM(Thread):
+#     def __init__(self):
+#         super(XM,self).__init__()
+#     def run(self):
+#         with con:
+#             while True:
+#                 time.sleep(1)
+#                 arr.append(1)
+#                 length = len(arr)
+#                 print("小明添加了1个鱼丸,锅内还有%s个鱼丸"%length)
+#                 if length>=5:
+#                     con.notify_all()
+#                     con.wait()
+#
+#
+# class XH(Thread):
+#     def __init__(self,name):
+#         super(XH,self).__init__()
+#         self.name = name
+#     def run(self):
+#         with con:
+#             while True:
+#                 time.sleep(1)
+#                 arr.pop()
+#                 length = len(arr)
+#                 print("%s吃了1个鱼丸,锅内还有%s个鱼丸"%(self.name,length))
+#                 if length<=0:
+#                     con.notify()
+#                     con.wait()
+#
+# xm = XM()
+# xm.start()
+#
+# xh = XH("小红1")
+# xh.start()
+#
+# xh1 = XH("小红2")
+# xh1.start()
 
-arr = []
 
-class XM(Thread):
-    def __init__(self):
-        super(XM,self).__init__()
-    def run(self):
-        con.acquire()
-        while True:
-            time.sleep(2)
-            arr.append(1)
-            length = len(arr)
-            print("小明添加了1个鱼丸,锅内还有%s个鱼丸"%length)
-            if length>=5:
-                con.wait()
-                con.notify()
+"""
+wait_for(predicate,timeout=)
+等待 当predicate 返回值为 False 阻塞  当返回值为True 运行
+wait() 等待，阻塞 。直到被 notify
+"""
+# from threading import Condition
+# import time
+# con = Condition()
+# con.acquire()
+#
+# def fun():
+#     time.sleep(5)
+#     return True
+# con.wait_for(fun)
+# print(123)
 
-class XH(Thread):
-    def __init__(self):
-        super(XH,self).__init__()
-    def run(self):
-        con.acquire()
-        while True:
-            time.sleep(1)
-            arr.pop()
-            length = len(arr)
-            print("小红吃了1个鱼丸,锅内还有%s个鱼丸" % length)
-            if length<=0:
-                con.notify()
-                con.wait()
-xm = XM()
-xm.start()
+"""
+Semaphore 信号量对象
 
-xh = XH()
-xh.start()
+信号量通常用于保护数量有限的资源，例如数据库服务器。在资源数量固定的任何情况下，都应该使用有界信号量。在生成任何工作线程前，应该在主线程中初始化信号量。
+"""
+# from threading import Semaphore
+# import time
+# b = Semaphore(value=3)
+
+# 技术面试 每次3个人
+
+# class Ms(Thread):
+#     def __init__(self):
+#         super(Ms,self).__init__()
+#     def run(self):
+#         with b:
+#             print("<%s>开始面试，倒计时3秒钟"%self.name)
+#             time.sleep(3)
+#             print("<%s>面试结束，有请下一个同学"%self.name)
+#
+#
+# for i in range(20):
+#     m = Ms()
+#     m.start()
 
 
+"""
+事件锁
+is_set() 判断事件锁内部开关是否为true 
+set() 设置事件锁内部开关为 true
+clear() 设置事件锁内部开关为 false
+wait()  阻塞 等待事件锁内部开关为true 然后运行
 
+"""
+# from threading import Event
+# import time
+#
+# e1 = Event()
+# e1.set()
+#
+# e2 = Event()
+#
+# arr = []
+# class XM(Thread):
+#     def __init__(self):
+#         super(XM,self).__init__()
+#     def run(self):
+#         while True:
+#             e1.wait()
+#             time.sleep(1)
+#             arr.append(1)
+#             length = len(arr)
+#             print("小明添加了1个鱼丸，锅内还有%s个鱼丸"%length)
+#             if length>=5:
+#                 e1.clear()
+#                 e2.set()
+#
+# class XH(Thread):
+#     def __init__(self):
+#         super(XH, self).__init__()
+#     def run(self):
+#         while True:
+#             e2.wait()
+#             time.sleep(1)
+#             arr.pop()
+#             length = len(arr)
+#             print("小红吃了1个鱼丸,锅内还剩%s个鱼丸"%length)
+#             if length<=0:
+#                 e2.clear()
+#                 e1.set()
+#
+# xm = XM()
+# xm.start()
+# xh = XH()
+# xh.start()
+
+"""
+定时器对象
+"""
+# import time
+# def fun():
+#     time.sleep(3)
+#     print("123")
+#
+# fun()
+# print("开始")
+
+# from threading import Timer
+# # Timer 是一个倒计时线程
+# def fun():
+#     print("123")
+#
+# t = Timer(3,fun)
+# t.start()
+# print("开始")
+
+
+"""
+栅栏对象
+
+wait()
+
+"""
+# from threading import Barrier,active_count
+# import time
+#
+# b = Barrier(5)
+# l = Lock()
+#
+# class Test(Thread):
+#     def __init__(self):
+#         super(Test,self).__init__()
+#     def run(self):
+#         b.wait()
+#         with l:
+#             print("%s 开始运行"%self.name)
+#
+# for i in range(20):
+#     time.sleep(2)
+#     t = Test()
+#     with l:
+#         print("创建了%s线程"%t.name)
+#     t.start()
