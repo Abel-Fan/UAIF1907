@@ -77,17 +77,71 @@ if __name__ == "__main__":
     # print(q.get())
     # print(q.get()) # 阻塞
 
-    q.put(1)
-    print("qsize:",q.qsize())  #1
-    print("full:",q.full())    #False
-    print("empty",q.empty())   # False
-    q.put(2)
-    print("qsize:",q.qsize())
-    print("full:",q.full())
-    print("empty",q.empty())
-    
+    # q.put(1)
+    # print("qsize:",q.qsize())  #1
+    # print("full:",q.full())    #False
+    # print("empty",q.empty())   # False
+    # q.put(2)
+    # print("qsize:",q.qsize())
+    # print("full:",q.full())
+    # print("empty",q.empty())
 
 
+# Queue 中 task_done() join() 联系
+# from queue import Queue
+# q = Queue(5)
+# def fun1():
+#     while True:
+#         time.sleep(3)
+#         q.put(1)
+#         print("队列添加成功")
+#         # q.task_done()
+
+# def fun2():
+#     while True:
+#         q.join()
+#         data = q.get()
+#         print("获取内容%s"%data)
+
+# t1 =  Thread(target=fun1)
+# t1.start()
+# t2 = Thread(target=fun2)
+# t2.start()
 
 
+# multiprocessing.Queue  没有 task_done() join()
 
+# 利用 queue 进程进行同行
+# import time
+# q = Queue(5)
+# def fun1(q): 
+#     while True:
+#         time.sleep(3)
+#         q.put(1)
+#         print("添加鱼丸,锅内还有%s"%q.qsize())
+# def fun2(q):
+#     while True:
+#         data = q.get()
+#         print('吃鱼丸,锅内还有%s'%q.qsize())
+# if __name__ =="__main__":
+#     p1 = Process(target=fun1,args=(q,))
+#     p1.start()
+#     p2 = Process(target=fun2,args=(q,))
+#     p2.start()
+
+from multiprocessing import Pipe
+# Pipe() 管道
+conn1,conn2 = Pipe(True) # 双工
+
+def fun1(con):
+    con.send("fun1：hello")
+    print(con.recv())
+def fun2(con):
+    print(con.recv())
+    con.send("fun2: hi")
+
+if __name__ =="__main__":
+    p1= Process(target=fun1,args=(conn1,))
+    p1.start()
+    p2 = Process(target=fun2,args=(conn2,))
+    p2.start()
