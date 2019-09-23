@@ -1,99 +1,93 @@
-# 线程： 是CPU调度的基本单位,包含在进程之中。
-# 多线程 ，IO密集型程序
-# 多进程 , 计算密集型程序
+from multiprocessing import Process,active_children,cpu_count,current_process,get_all_start_methods,get_context,get_start_method,Queue
+from threading import Thread
 
-# 模块 threading
 # 常用函数
-from threading import Thread,active_count,current_thread,enumerate,main_thread,stack_size,Lock
 """
-active_count() 获取当前活动线程数量
-current_thread()  获取当前线程
-enumerate()   获取当前活动线程
-main_thread()  获取主线程
-stack_size() 线程使用栈的大小
+print("返回主进程中所有的子进程",active_children())
+print("返回cpu的核心数",cpu_count())
+print("返回当前进程",current_process())
+print("获得进程全部开启方法",get_all_start_methods())
+print("返回默认的上下文",get_context())
+print("返回默认的进程开启方法",get_start_method())
 """
-# Thread
-# 创建线程方式
-#（1） 通过构造函数
+
+# 进程开启方法
 """
-t = Thread(target=fun)  
-# 参数
- target 线程执行功能 
- args fun的参数 
- kwargs fun的参数
- groups 线程扩展时使用 一般默认为None
- 
-# t 线程对象属性
-t.start() 运行
-t.join(blocking,timeout)  阻塞
-t.name()  线程名字
-t.ident() 线程id
-t.daemon  是否为守护进程  默认 False 。 守护进程： 主进程不会等待守护进程运行结束。
-t.is_alive() 判断线程是否存活
+spawn
+fork()
+forkserver()
 """
-# 通过继承类的方式
-"""
-class MyThread(Thread):
+
+# 创建进程
+
+# （1）构造函数
+import time,random
+arr = []
+def fun(i):
+    time.sleep(random.randint(1,3))
+    arr.append(i)
+    print(arr)
+
+
+
+# （2）继承类方式
+
+class MyProcess(Process):
     def __init__(self):
-        super(MyThread,self).__init__()
+        super(MyProcess,self).__init__()
     def run(self):
-        # 线程被 start()时执行的功能
-        pass
-        
-t = MyThread()
-t的属性同上
-"""
-# 线程的同步
-# Lock 锁 原始锁 互斥锁
-"""
-l = Lock() 创建锁
-l.acquire() 上锁
-l.release() 释放锁
-"""
+        fun()
 
-# 死锁：两个都在阻塞等待对方释放的锁。
 
-# RLock 递归锁,重复锁
-# RLock 与 Lock 区别
-# 1. 同一个线程内 RLock可以重复上锁 Lock释放锁才能上锁。
-# 2. Lock 锁上的状态时可以释放锁, 释放状态的锁 释放时会报错
-# 3. RLock是一个局部锁，在一个线程中上锁后，其他线程无法释放。Lock 全局锁
 
 """
-r = RLock()
-r.acquire()
-r.release()
+进程对象方法：
+start()
+run()
+join()
+name()
+is_alive()
+daemon
+pid
+authkey
+exitcode
+terminate
+kill
+close
 """
+if __name__ == "__main__":
+    
+    q = Queue(2) 
+    # 接收正整数 用来代表 队列的长度，如果是 -1 0 代表无限长
+    """
+    q.put() 插入内容
+    q.get() 获取内容
 
-# 条件锁 Condition
-"""
-c = Condition()
-wait() 等待  阻塞当前线程 释放锁
-notify() 通知  唤醒一个等待的线程
-"""
+    q.full() 是否已满
+    q.empty() 是否为空
 
-# 信号量锁 Semaphore(num)
-"""
-信号量通常用于保护数量有限的资源，例如数据库服务器。在资源数量固定的任何情况下，都应该使用有界信号量。在生成任何工作线程前，应该在主线程中初始化信号量。
-"""
-"""
-# 属性
-s = Semaphore(5)
-s.acquire()
-s.release()
-"""
-# 事件锁Event,在内部维护一个状态
-"""
-e = Event()
-e.is_set() 是否上锁
-e.set()  上锁
-e.clear()  释放锁
-e.wait()  阻塞直到内部维护状态 为True
-"""
-# Timer 倒计时线程
-"""
-t = Timer(5,fun)  # 第一个参数倒计时时间  第二参数执行函数
-t.start()
-"""
+    q.task_done() 表示前面排队的任务已经被完成。
+    q.join() 阻塞
+    """
+    # q.put(1)
+    # q.put(2)
+    # print(q.get())
+    # q.put(3) # 阻塞
+    # print(q.get())
+    # print(q.get())
+    # print(q.get()) # 阻塞
 
-# Barrier 栅栏锁
+    q.put(1)
+    print("qsize:",q.qsize())  #1
+    print("full:",q.full())    #False
+    print("empty",q.empty())   # False
+    q.put(2)
+    print("qsize:",q.qsize())
+    print("full:",q.full())
+    print("empty",q.empty())
+    
+
+
+
+
+
