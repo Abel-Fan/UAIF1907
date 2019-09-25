@@ -1,5 +1,5 @@
-from multiprocessing import Process,active_children,cpu_count,current_process,get_all_start_methods,get_context,get_start_method,Queue
-from threading import Thread
+# from multiprocessing import Process,active_children,cpu_count,current_process,get_all_start_methods,get_context,get_start_method,Queue
+# from threading import Thread
 
 # 常用函数
 """
@@ -21,22 +21,22 @@ forkserver()
 # 创建进程
 
 # （1）构造函数
-import time,random
-arr = []
-def fun(i):
-    time.sleep(random.randint(1,3))
-    arr.append(i)
-    print(arr)
+# import time,random
+# arr = []
+# def fun(i):
+#     time.sleep(random.randint(1,3))
+#     arr.append(i)
+#     print(arr)
 
 
 
 # （2）继承类方式
 
-class MyProcess(Process):
-    def __init__(self):
-        super(MyProcess,self).__init__()
-    def run(self):
-        fun()
+# class MyProcess(Process):
+#     def __init__(self):
+#         super(MyProcess,self).__init__()
+#     def run(self):
+#         fun()
 
 
 
@@ -55,7 +55,7 @@ terminate
 kill
 close
 """
-if __name__ == "__main__":
+# if __name__ == "__main__":
     
     q = Queue(2) 
     # 接收正整数 用来代表 队列的长度，如果是 -1 0 代表无限长
@@ -129,19 +129,21 @@ if __name__ == "__main__":
 #     p2 = Process(target=fun2,args=(q,))
 #     p2.start()
 
-from multiprocessing import Pipe
-# Pipe() 管道
-conn1,conn2 = Pipe(True) # 双工
+# from multiprocessing import Pipe
+# # Pipe() 管道
+# conn1,conn2 = Pipe(True) # 双工
 
-def fun1(con):
-    con.send("fun1：hello")
-    print(con.recv())
-def fun2(con):
-    print(con.recv())
-    con.send("fun2: hi")
+# def fun1(con):
+#     con.send("fun1：hello")
+#     print(con.recv())
+# def fun2(con):
+#     print(con.recv())
+#     con.send("fun2: hi")
 
-if __name__ =="__main__":
-    p1= Process(target=fun1,args=(conn1,))
-    p1.start()
-    p2 = Process(target=fun2,args=(conn2,))
-    p2.start()
+# if __name__ =="__main__":
+#     p1= Process(target=fun1,args=(conn1,))
+#     p1.start()
+#     p2 = Process(target=fun2,args=(conn2,))
+#     p2.start()
+
+
