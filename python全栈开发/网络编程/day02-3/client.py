@@ -44,11 +44,14 @@ class Client:
                 print("退出")
                 self.isLogin=False
                 break
+            elif con['status']=="cd":
+                self.home = con['con']
             else:
                 print(con['con'])
 
     def send(self,con):
         self.__c.send( json.dumps({'con':con,'token':self.token}).encode())
+
     def recv(self):
         con = json.loads(self.__c.recv(1024).decode())
         return con

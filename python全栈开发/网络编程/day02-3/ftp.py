@@ -42,7 +42,7 @@ class FTPserver:
                         self.tokens.append(token)
                         res = {'status': 'ok', 'msg': "登录成功", 'home': user['home'],'token':token}
                         print(res)
-                        os.chdir(self.__root+user['home'])
+                        os.chdir(self.__root+"\\"+user['home'])
                     else:
                         res = {'status':'error','msg':'密码错误'}
                 else:
@@ -54,7 +54,6 @@ class FTPserver:
                 self.__c.send(json.dumps(res).encode())
                 break
 
-
     def ftpserver(self):
         while True:
             mls = self.recv().strip().split()
@@ -65,11 +64,41 @@ class FTPserver:
                 self.__c.close()
                 break
             elif mls[0] =="cd":
-                pass
+                os.chdir(os.path.join(os.getcwd(),mls[1]))
+                self.send({'status':'cd','con':os.getcwd().split("root\\")[1]})
             elif mls[0] =="ls":
-                con = "\n".join(os.listdir())
+                # ls -l 详情
+                # ls -a 全部
+                con = ""
+                if len(mls)>1:
+                    if mls[1]=="-l":
+                        for f in os.listdir():
+                            res = os.stat(os.path.join(os.getcwd(),f))
+                            info = "%s %s %s %s %s %s %s %s %s %s %s\n"%(
+                                f,
+                                res.st_atime,
+                                res.st_ctime,
+                                res.st_mtime,
+                                res.st_dev,  # 设备
+                                res.st_mode, # 保护模式
+                                res.st_ino, # 索引
+                                res.st_nlink, # 链接数
+                                res.st_uid,
+                                res.st_gid,
+                                res.st_size,
+                            )
+                            con+=info
+                else:
+                    con = "\n".join(os.listdir())
+
                 self.send({'status':'ok','con':con})
 
+            elif mls[0] =="mkdir":
+                if len(mls)>=1:
+                    os.mkdir(mls[1])
+                    self.send({'status':'ok','con':''})
+                else:
+                    pass
 
     def recv(self):
         con = self.__c.recv(1024)
@@ -82,6 +111,8 @@ class FTPserver:
 
     def send(self,con):
         self.__c.send(json.dumps(con).encode())
+
+
 if __name__ == "__main__":
     ftp = FTPserver()
     ftp.createServer()
