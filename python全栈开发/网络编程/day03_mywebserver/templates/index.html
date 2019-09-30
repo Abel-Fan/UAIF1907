@@ -9,7 +9,13 @@
     <link rel="stylesheet" href="../static/css/index.css">
 </head>
 <body>
-    <div class="box"> 这是首页  </div>
+    <div class="box"> 这是 {{ name }}  </div>
+    { if status=='0'}
+    <a href="">登录</a>
+    { else }
+    <a href="">个人中心</a>
+    { endif }
+
 </body>
 <script src="../static/js/index.js"></script>
 </html>

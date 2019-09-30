@@ -2,6 +2,7 @@
 myserver 网站后台
 """
 from UServer import Userver,render
+import pickle
 
 # 实例化应用
 
@@ -21,9 +22,12 @@ def con():
 
 @app.route("/")
 def index():
-    return render("index.html")
+    # 读取数据库数据
+    with open("a.txt","rb") as f:
+        obj = pickle.load(f)
+    return render("index.html",**obj)
 
 
 
 if __name__ =="__main__":
-    app.run(address = ('192.168.43.217',8000))
+    app.run(address = ('192.168.1.234',8000))

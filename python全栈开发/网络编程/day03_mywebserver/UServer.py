@@ -6,6 +6,8 @@ Userver 轻量级 web服务器框架
 2、创建路由
 
 """
+import re
+
 from socketserver import TCPServer,BaseRequestHandler
 # 服务器 服务器处理程序
 
@@ -54,6 +56,20 @@ class Userver:
         return routewrap
 
 
-def render(templateName):
+def render(templateName,**kwargs):
     with open('templates/%s'%templateName,'r',encoding="utf-8") as f:
-        return f.read()
+        con = f.read()
+    if kwargs:
+        return replaceVariable(con,kwargs)
+    else:
+        return con
+
+def replaceVariable(con,kwargs):
+    # 只替换变量
+    keyArr = re.findall('(\{\{.*?\}\})',con)
+    for key in kwargs:
+        for item in keyArr:
+            if key in item:
+                con = con.replace(item,kwargs[key])
+
+    return con
