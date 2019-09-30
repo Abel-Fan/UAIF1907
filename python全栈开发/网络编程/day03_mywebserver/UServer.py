@@ -12,16 +12,27 @@ from socketserver import TCPServer,BaseRequestHandler
 class UserverHandler(BaseRequestHandler):
     def handle(self):
         # 构造 request信息
-        resText = self.request.recv(1024).decode('utf-8')
+        resCon = self.request.recv(1024)
+        resText = resCon.decode('utf-8')
+
         resList = resText.split("\r\n")
         obj = {key: value for key, value in [tuple(item.split(": ")) for item in resList[1:] if item != ""]}
         info = resList[0].split()
         obj['method'], obj['url'], obj['protocol'] = info
         self.req = obj
-        con = self.routes[obj['url']]()
-        self.request.sendall(("HTTP/1.1 201 OK\r\n\r\nAccept-Language: zh-CN,zh;q=0.9\r\n "+con).encode('utf-8'))
-
-
+        if 'favicon' in obj['url']:
+            # login icon
+            res = ("HTTP/1.1 201 OK\r\n\r\n" + "").encode('utf-8')
+            self.request.sendall(res)
+        elif 'static' in obj['url']:
+            # 静态资源
+            with open("."+obj['url'],'r',encoding='utf-8') as f:
+                res = ("HTTP/1.1 201 OK\r\n\r\n" + f.read()).encode('utf-8')
+                self.request.sendall(res)
+        else:
+            con = self.routes[obj['url']]()
+            res = ("HTTP/1.1 201 OK\r\n\r\n"+con).encode('utf-8')
+            self.request.sendall(res)
 
 class Userver:
 
@@ -41,3 +52,8 @@ class Userver:
             self.routes[dirname] =fun
             return fun()
         return routewrap
+
+
+def render(templateName):
+    with open('templates/%s'%templateName,'r',encoding="utf-8") as f:
+        return f.read()

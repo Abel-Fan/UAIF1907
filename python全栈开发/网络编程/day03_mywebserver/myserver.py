@@ -1,7 +1,7 @@
 """
 myserver 网站后台
 """
-from UServer import Userver
+from UServer import Userver,render
 
 # 实例化应用
 
@@ -19,7 +19,11 @@ def list():
 def con():
     return "这是详情页"
 
+@app.route("/")
+def index():
+    return render("index.html")
+
 
 
 if __name__ =="__main__":
-    app.run(address = ('192.168.1.238',8000))
+    app.run(address = ('192.168.43.217',8000))
