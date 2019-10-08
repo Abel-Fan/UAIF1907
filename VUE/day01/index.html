@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<style>
+h2{
+    background-color:red;
+}
+</style>
+<body>
+    <div id="app">
+        <!-- <h2 v-cloak>《{{ title }}》</h2>
+        <h3 v-text="title2">《》</h3>
+
+        <h4 v-html="inner"></h4>
+        <h4 v-text="inner"></h4> -->
+
+        <!-- <input type="text" v-model="value">
+        <span v-text=value></span> -->
+        <!-- <span v-if="num>10">abc</span>
+        <span v-else-if="num==10">456</span>
+        <span v-else>123</span> -->
+        
+        <!-- <h1 v-for="v,i in arr">
+            <span v-text="i"></span>
+            <span>{{ v.name }}</span>
+            <span>{{ v.age }}</span>
+            <span>{{ v.sex }}</span>
+        </h1>
+         -->
+
+         <!-- <input type="text" v-model=value>
+         <span v-once v-text=value></span>
+         <span v-text=value></span> -->
+
+         
+    </div>
+</body>
+<script>
+    // 1. 实例
+    let vm = new Vue({
+        el:"#app",  // element  获取dom元素
+        data:{    // viem层 数据来源
+            title:'vue实例asdf',
+            title2:"这是标题",
+            inner:"<p>this is p</p>",
+            value:1000,
+            flag:false,
+            num:10,
+            width:200,
+            height:200,
+            class1:"box1",
+            class2:"box2",
+            arr:[
+                {sex:'男',age:18,name:"小白"},
+                {sex:'男',age:18,name:"小白"},
+                {sex:'男',age:18,name:"小白"},
+                {sex:'男',age:18,name:"小白"},
+            ],
+            style:"width:200px;height:200px;border:1px solid red;"
+        },
+        methods:{
+            clickfun1(){
+                alert(123)
+            }
+        },
+    })
+    // 2. 指令（vue中特殊的属性）
+    /*
+    （1）v-text 给元素绑定数据  innerText
+        为什么 v-text存在还需要 {{ }} ?
+    （2）v-cloak 隐藏未被vue编译的dom元素
+    （3）v-html 
+    （4）v-model 实现双向数据绑定，给表单元素添加
+    （5）v-for 
+    （6）v-once
+    （7）v-bind  简写   :
+
+    
+    */
+
+</script>
+</html>
