@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <span>{{ num }}</span>
+        <button @click="num++">click</button>
+    </div>
+</body>
+<script>
+    let vm = new Vue({
+        el:"#app",
+        data:{
+            num:123,
+            msg:"this is span"
+        },
+        methods:{
+            fun1(){
+                console.log("fun1被执行了")
+            }
+        },
+        beforeCreate() {
+            // console.log("执行了beforeCreate钩子函数")
+            // console.log(this.num)
+            // console.log(this.fun1)
+        },
+        created() {
+            // console.log(this.num)
+            // console.log(this.fun1)
+        },
+        beforeMount(){
+            // console.log("挂载前")
+            // console.log(document.querySelector("span").innerText)
+        },
+        mounted() {
+            // console.log('挂载后')
+            // console.log(document.querySelector("span").innerText)
+        },
+        beforeUpdate() {  // 只是data数据更新 并没有加载页面中
+            // console.log(document.querySelector("span").innerText)
+            // console.log(this.num)
+        },
+        updated() {
+            console.log(document.querySelector("span").innerText)
+            console.log(this.num)
+        },
+
+    })
+
+</script>
+</html>

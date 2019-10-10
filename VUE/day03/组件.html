@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>表单</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <com-son></com-son>
+    </div>
+    <template id="zj1">
+        <div>   
+            <!-- 组件的根元素只能有一个 -->
+            <span>这是 组件 1</span>
+        </div>
+    </template>
+</body>
+<script>
+    // 全局创建组件
+    // 方式1
+    // 创建组件
+    // let com1 = Vue.extend({
+    //     template:"#zj1"
+    // })
+    // // 注册组件 参数1：组件名  参数2：组件
+    // // 组件名 规范： 全部小写,驼峰命名法(html不区分大小写，在html中使用驼峰命名法的组件名时通过 连字符方式 写入),连字符方式
+    // Vue.component('com-son',com1)
+
+    // 方式2
+    // Vue.component('com-son',Vue.extend({
+    //      template:"#zj1"
+    // }))
+
+    // 方式3
+    Vue.component("com-son",{
+        template:"#zj1"
+    })
+    let vm = new Vue({
+        el:"#app",
+        data:{},
+        methods:{},
+    })
+</script>
+</html>
