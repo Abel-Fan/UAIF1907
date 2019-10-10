@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>day02</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h2>学生信息</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>序号</th>
+                <th>姓名</th>
+                <th>性别</th>
+                <th>联系方式</th>
+                <th>操作</th>
+            </tr>
+            <tr v-for="obj,i in students">
+                <td v-text="i"></td>
+                <td v-text="obj.name"></td>
+                <td v-text="obj.sex==0?'男':'女'"></td>
+                <td v-text="obj.tel"></td>
+                <td>
+                    <button type="button" class="btn btn-danger">delete</button>
+                </td>
+            </tr>
+        </table>
+        <h2>添加信息</h2>
+        <div>
+            姓名: <input type="text" name="username" v-focus> <br>
+            性别: <input type="radio" name="sex" id="">男  <input type="radio" name="sex" id=""> 女  <br>
+            联系方式: <input type="text" name="tel" v-color="'blue'"> <br>
+            <button type="button" class="btn btn-info">提交</button>
+        </div>
+    </div>
+</body>
+<script>
+Vue.directive("focus",{
+    bind:function(el){   // el 被绑定指令的元素
+        // el.style.border="1px solid red"
+        // el.focus()  // 此刻不会执行 focus 插入到页面中的元素focus才起作用
+    },  // 当元素绑定 该指令时执行，只执行一次
+    inserted:function(el,binding){  //插入到页面中之后  el 被绑定指令的元素
+                                    // binding 对象
+        el.focus()
+    },
+    
+})  // 第一个参数 指令名  第二个参数 object
+
+Vue.directive("color",{
+    inserted:function(el,binding){
+        el.style.color=binding.value
+    }
+})
+
+let vm = new Vue({
+    el:"#app",
+    data:{
+        students:[
+            {name:"小白1",sex:0,tel:2582520345},
+            {name:"小白2",sex:0,tel:2582520345},
+            {name:"小白3",sex:0,tel:2582520345},
+            {name:"小白4",sex:0,tel:2582520345},
+            {name:"小白5",sex:0,tel:2582520345},
+        ]
+    },
+    directives:{
+        'focus':{
+            bind:function(){}
+        }
+    }
+})
+
+// 指令分为 全局 和局部
+
+
+
+</script>
+</html>

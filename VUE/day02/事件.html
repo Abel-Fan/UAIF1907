@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<style>
+.bigBox{
+    width:500px;
+    height:500px;
+    background-color:gold;
+}
+.box{
+    width:200px;
+    height:200px;
+    background-color:burlywood;
+}
+</style>
+<body>
+    <div id="app">
+        <div class="bigBox" @click="fun1">
+            <div class="box" @click="fun2"></div>
+        </div>
+        <input type="text" @keyup.enter="fun3">
+    </div>
+</body>
+<script>
+let vm = new Vue({
+    el:"#app",
+    data:{},
+    methods:{
+       fun1(){
+           console.log("bigBox")
+       },
+       fun2(){
+           console.log("box")
+       },
+       fun3(){
+           console.log(123)
+       }
+    }
+})
+
+</script>
+</html>

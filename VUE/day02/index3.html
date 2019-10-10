@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button @click="num2+=1">点击</button>
+        <span>{{ msg2 }} {{ fun1()  }}</span>
+        <span>{{num2}}</span>
+    </div>
+</body>
+<script>
+let vm = new Vue({
+    el:"#app",  // 获取元素
+    // template:"<div class='box'></div>", // 组件的模板会替换挂载的元素
+    data:{      // 数据 
+        msg:"hello world",
+        num:1,
+        num2:1
+    },
+    methods:{   // 方法
+        fun1(){
+            console.log('fun1')
+            return this.msg+this.num
+        }
+    },
+    computed:{  // 计算属性 :特点 只要依赖的对象不发生改变 不会重新计算。
+        msg2(){
+            console.log('msg2')
+            return this.msg+this.num
+        }
+    }
+})
+
+
+</script>
+</html>
