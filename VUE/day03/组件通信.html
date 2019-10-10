@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{msg}}
+        <input type="text" v-model="msg">
+        <son1 :pmsg='msg' pmsg2='msg' :obj=obj v-bind=obj></son1>   
+        <!-- 静态数据 与动态数据区别 在于 有没有  v-bind:  -->
+    </div>
+    <template id="son1">
+        <div>
+            this is son1组件 {{ msg }}  {{pmsg2}}  {{pmsg}}
+            <br>
+            {{ obj }}
+            <br>
+            {{name}}
+            <br>
+            {{sonage}}
+            <button @click="sonage+=1">click</button>
+        </div>
+    </template>
+</body>
+<script>
+    let vm = new Vue({
+        el:"#app",
+        data:{
+            msg:"hello world 父",
+            obj:{name:'小白',age:30}
+        },
+        components:{
+            son1:{
+                template:"#son1",
+                // props:['pmsg2','pmsg','obj','name','age'],
+                props:{
+                    pmsg:String,
+                    pmsg2:String,
+                    obj:Object,
+                    name:String,
+                    age:{
+                        type:Number,
+                        // required:true,
+                        default:18,
+                        validator:function(val){
+                            return val>20
+                        }
+                    },
+                },
+                data:function(){   // 子组件的data属性必须为函数 返回值为数据
+                    return {
+                        msg:"hello world 子",
+                        sonage:this.age
+                    }
+                },
+                methods:{
+                   
+                }
+            }
+        }
+    })
+</script>
+</html>

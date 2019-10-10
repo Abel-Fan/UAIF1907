@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <span>num:{{num}}</span>
+        <br>
+        <button @click="fun2">点击</button>
+        <son v-on:increments='fun1' :num='num'></son>
+    </div>
+
+    <template id="son">
+        <div>
+            <span>子元素:{{ num }}</span>
+            <button @click="sonfun1">click</button>
+        </div>
+    </template>
+</body>
+<script>
+
+Vue.component('son',{
+    template:"#son",
+    props:['num'],
+    methods:{
+        sonfun1(){
+            this.$emit('increments')
+        }
+    }
+})
+
+let vm = new Vue({
+    el:"#app",
+    data:{
+        num:0
+    },
+    methods:{
+        fun1(){
+            this.num-=1
+        },
+        fun2(){
+            this.num+=1
+        }
+    }
+})
+
+</script>
+</html>

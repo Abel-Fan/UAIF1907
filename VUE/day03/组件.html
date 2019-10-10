@@ -4,12 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>表单</title>
+    <title>组件</title>
     <script src="vue.js"></script>
 </head>
 <body>
     <div id="app">
         <com-son></com-son>
+        <son1></son1>
+    </div>
+    <div id="app2">
+        <com-son></com-son>
+        <son1></son1>
     </div>
     <template id="zj1">
         <div>   
@@ -42,6 +47,18 @@
         el:"#app",
         data:{},
         methods:{},
+        components:{
+            son1:{
+                template:"<span>this is span</span>"
+            },
+        }
     })
+    let vm2 = new Vue({
+        el:"#app2",
+        data:{},
+        methods:{},
+    })
+
+    
 </script>
 </html>
