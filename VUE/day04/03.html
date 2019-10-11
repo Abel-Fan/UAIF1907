@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+    <script src="vue-router.js"></script>
+</head>
+<style>
+    *{
+        margin:0px;
+        padding:0px;
+        list-style: none;
+    }
+    .aside-box{
+        width:200px;
+        height:auto;
+        border:1px solid lightseagreen;
+    }
+    
+
+</style>
+<body>
+    <div id="app">
+        <router-view></router-view>
+    </div>
+
+    <template id='aside'>
+        <div class="aside-box">
+            <list-item v-for="item in categorys" :item=item></list-item>
+        </div>
+    </template>
+    <template id='listitem'>
+        <div class="aside-item" style="padding:10px 0px;cursor: pointer;">
+            <h4 @click="flag=!flag">{{ item.t }}</h4>
+            <ul v-show="flag">
+                <li v-for="c in item.con" style="font-size:12px;">{{c}}</li>
+            </ul>
+        </div>
+    </template>
+</body>
+<script>
+let router = new VueRouter({
+    routes:[
+        {
+            path:"/",
+            component:{
+                template:"#aside",
+                data:function(){
+                    return {
+                        categorys:[
+                            {'t':'组件化思想',con:['web开发发展史','前端架构变迁']},
+                            {'t':'vue介绍',con:['web开发发展史','前端架构变迁']},
+                            {'t':'vue基础',con:['web开发发展史','前端架构变迁']},
+                            {'t':'vue组件',con:['web开发发展史','前端架构变迁']},
+                            {'t':'vue动画',con:['web开发发展史','前端架构变迁']},
+                        ]
+                    }
+                },
+                components:{
+                    listItem:{
+                        template:"#listitem",
+                        props:['item'],
+                        data:function(){
+                            return {
+                                flag:false
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    ]
+})
+
+let vm = new Vue({
+    el:"#app",
+    router,
+})
+
+</script>
+</html>

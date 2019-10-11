@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src='vue.js'></script>
+    <script src='vue-router.js'></script>
+</head>
+<body>
+    <div id="app">
+        <h4>这是 app</h4>   
+        <router-link to="/home">home</router-link>
+        <router-link to="/page">page</router-link>
+        <router-view></router-view>
+    </div>
+    <template id="com1">
+        <div>
+            <router-link to="/home/news">new</router-link>
+            <router-link to="/home/message">message</router-link>
+            <router-view></router-view>
+            这是home 组件
+        </div>
+    </template>
+
+
+    <template id="com2">
+        <div>
+            这是page 组件
+        </div>
+    </template>
+
+    <template id="com3">
+        <div>
+            这是/home/news组件
+        </div>
+    </template>
+    <template id="com4">
+            <div>
+                这是/home/message组件
+            </div>
+        </template>
+</body>
+<script>
+    // 路由系统
+    let routes = [
+            {
+                path:"/home",
+                component:{
+                    template:"#com1"
+                },
+                children:[
+                    {
+                        path:"news",
+                        component:{
+                            template:"#com3"
+                        }
+                    },{
+                        path:"message",
+                        component:{
+                            template:"#com4"
+                        }
+                    }
+                ]
+            },
+            {
+                path:"/page",
+                component:{
+                    template:"#com2"
+                }
+            },
+        ]
+
+
+
+    // 路由实例
+    let router = new VueRouter({
+        routes:routes
+    })
+
+
+    // vue实例
+    let vm = new Vue({
+        el:"#app",
+        router,
+    })
+
+
+</script>
+</html>
