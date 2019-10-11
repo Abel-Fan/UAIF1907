@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+    <script src="vue-router.js"></script>
+</head>
+<style>
+.router-link-active{
+    font-size:18pxs;
+    color:red;
+}
+
+</style>
+<body>
+    <div id="app">
+        <router-link to="home">home</router-link>
+        <router-link to="page">page</router-link>
+        <router-view></router-view>
+    </div>
+</body>
+<script>
+// 服务器端路由：通过请求返回一个资源（html\css\js\img\数据）
+// 前端路由：UI组件切换
+
+let router = new VueRouter({
+    routes:[   // 注意 没有r  类型是一个数组,内部放路由对象
+        {
+            'path':"/home*",
+            'component':{
+                template:`
+                <div>
+                    当前路径：{{$route.path}}  <br>
+                    当前参数：{{$route.params}}  <br>
+                    查询参数：{{$route.params}}  <br>
+                    hash{{$route.params}}  <br>
+                    fullpage:{{$route.params}}  <br>
+
+                </div>
+                `,
+                data:function(){
+                    return {
+                        name:"小红"
+                    }
+                }
+            }
+        },
+        {
+            'path':"/page/:id",
+            'component':{
+                template:"<div>this is page</div>"
+            }
+        }
+    ]
+})
+
+let vm = new Vue({
+    el:"#app",
+    router,
+})
+
+console.dir(vm)
+
+
+
+
+
+</script>
+</html>
