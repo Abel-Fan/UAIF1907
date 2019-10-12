@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>嵌套路由</title>
+    <script src="vue.js"></script>
+    <script src="vue-router.js"></script>
+</head>
+<style>
+*{
+    margin:0;
+    padding:0;
+    list-style: none;
+}
+
+.aside-box{
+    width:200px;
+    height:auto;
+    border:1px solid lightskyblue;
+    margin:0 auto;
+}
+.list-item h4{
+    color:lightslategray;
+}
+.list-item ul li{
+    padding:3px 0;
+    text-indent:2em;
+}
+
+</style>
+<body>
+    <div id="app">
+        <router-link to="/">index</router-link>
+        <router-link to="/home">home</router-link>
+        <router-view></router-view>
+    </div>
+
+    <template id="aside">
+        <div class='aside-box'>
+            <list-item v-for='item,index in msgs' v-bind=item :key='index'></list-item>
+        </div>
+    </template>
+
+
+    <template id="listitem">
+        <div class="list-item">
+            <h4 @click="flag=!flag">{{ title}}</h4>
+            <ul v-if="flag">
+                <li v-for="c in con">{{c}}</li>
+            </ul>
+        </div>
+    </template>
+
+    <template id="home">
+        <div>
+            <router-link :to="{name:'show',params:{id:1},query:{name:'小白'} }">show</router-link>
+            <router-link :to="{name:'page'}">page</router-link>
+            <router-view></router-view>
+        </div>
+    </template>
+    <template id="show">
+        <div>
+            this is show页面
+        </div>
+    </template>
+    <template id="page">
+        <div>
+            this is page页面
+        </div>
+    </template>
+</body>
+<script>
+    let router = new VueRouter({
+        routes:[
+            {
+                path:'/',
+                component:{
+                    template:"#aside",
+                    data:function(){
+                        return {
+                            msgs:[
+                                {'title':'Vue路由',con:['路由1','路由2','路由3']},
+                                {'title':'Vue路由',con:['路由1','路由2','路由3']},
+                            ]
+                        }
+                    },
+                    components:{
+                        listItem:{
+                            props:['title','con'],
+                            template:"#listitem",
+                            data:function(){
+                                return {
+                                    flag:false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            {
+                path:"/home",
+                component:{
+                    template:"#home",
+                },
+                children:[
+                    {
+                        path:"show/:id",
+                        name:"show",
+                        component:{
+                            template:"#show"
+                        }
+                    },
+                    {
+                        path:"page",
+                        name:"page",
+                        component:{
+                            template:"#page"
+                        }
+                    }
+                ]
+            }
+        ]
+    })
+
+    let vm = new Vue({
+        el:'#app',
+        router
+    })
+
+
+</script>
+</html>

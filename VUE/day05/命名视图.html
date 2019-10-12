@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>命名视图</title>
+    <script src="vue.js"></script>
+    <script src="vue-router.js"></script>
+</head>
+<style>
+    body,html,#app{
+        width:100%;
+        height:100%;
+        overflow: hidden;
+    }
+    *{
+        margin:0;
+        padding:0;
+        list-style: none;
+    }
+    .head-box{
+        height:100px;
+        background-color:lightcyan;
+    }
+    .container{
+        display: flex;
+        height: calc(100% - 100px);
+    }
+    .aside-box{
+        background-color:lightsalmon;
+        flex-grow:0; 
+        flex-basis:200px;
+    }
+    .main-box{
+        background-color:lightskyblue;
+        flex-grow: 1;
+    }
+
+</style>
+<body>
+    <template id="head">
+        <div class="head-box">
+            this is head
+        </div>
+    </template>
+    <template id="aside">
+        <div class="aside-box">
+            this is aside
+        </div>
+    </template>
+    <template id="main">
+        <div class="main-box">
+            this is main
+        </div>
+    </template>
+
+    <div id="app">
+        <!-- head视图 -->
+        <router-view></router-view>   
+        <!-- aside视图 -->
+        <div class="container">
+            <router-view name="aside"></router-view>
+            <!-- main视图 -->
+            <router-view name="main"></router-view>
+        </div>
+
+    </div>
+</body>
+<script>
+    let router = new VueRouter({
+        routes:[
+            {
+                path:'/',
+                components:{
+                    default:{
+                        template:"#head"
+                    },
+                    aside:{
+                        template:"#aside"
+                    },
+                    main:{
+                        template:"#main"
+                    }
+                }  
+            }
+        ]
+    })
+    let vm = new Vue({
+        el:"#app",
+        router,
+    })
+
+</script>
+</html>
