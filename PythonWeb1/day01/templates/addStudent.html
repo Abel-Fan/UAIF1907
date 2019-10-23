@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/add.css">
+</head>
+<style></style>
+<body>
+    <div class="box">
+        <form action="add" method="post">
+            <!--
+                action:
+            -->
+            <div class="form-group">
+                <label for="name">姓名:</label>
+                <input  class="form-control" type="text" name="name" id="name">
+            </div>
+            <div class="form-group">
+                <label for="">性别：</label>
+                <input type="radio" name="sex" value="1"> 男
+                <input type="radio" name="sex" value="0"> 女
+            </div>
+            <div class="form-group">
+                <label for="">年龄：</label>
+                <input  class="form-control" type="number" name="age">
+            </div>
+            <div>
+                <label for="">学号：</label>
+                <input  class="form-control" type="number" name="num">
+            </div>
+            <div class="form-group">
+                <label for="">班级：</label>
+                <select name="class" id="" class="form-control">
+                    <option value="UAIF1907">UAIF1907</option>
+                    <option value="UAIF1901">UAIF1901</option>
+                    <option value="UAIF1902">UAIF1902</option>
+                </select>
+            </div>
+            <button class="btn btn-success">提交</button>
+        </form>
+    </div>
+</body>
+</html>

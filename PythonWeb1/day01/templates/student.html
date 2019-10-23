@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <script src="static/js/jquery-3.4.1.min.js"></script>
+    <script src="static/js/student.js"></script>
+</head>
+<body>
+    <table class="table table-striped table-bordered">
+        <tr>
+            <th>序号</th>
+            <th>学号</th>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>年龄</th>
+            <th>班级</th>
+            <th>操作</th>
+        </tr>
+        {% for stu in data %}
+        <tr>
+            <td class="id">{{ stu[0] }}</td>
+            <td class="num">{{ stu[1] }}</td>
+            <td class="name">{{ stu[2] }}</td>
+            <td class="sex" val="{{ stu[4] }}">
+                {% if stu[4] == 1%}
+                男
+                {% else %}
+                女
+                {% endif %}
+            </td>
+            <td class="age">{{ stu[3] }}</td>
+            <td class="class">{{ stu[5] }}</td>
+            <td>
+                <button class="btn btn-danger">
+                    <a href="del/{{ stu[0] }}">删除</a>
+                </button>
+                <button class="btn btn-warning edit">编辑</button>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <div class="editBox">
+         <!--
+                action:
+            -->
+            <div class="form-group">
+                <label for="name">姓名:</label>
+                <input  class="form-control" type="text" name="name" id="name">
+            </div>
+            <div class="form-group">
+                <label for="">性别：</label>
+                <input type="radio" name="sex" value="1"> 男
+                <input type="radio" name="sex" value="0"> 女
+            </div>
+            <div class="form-group">
+                <label for="">年龄：</label>
+                <input  class="form-control" type="number" name="age">
+            </div>
+            <div>
+                <label for="">学号：</label>
+                <input  class="form-control" type="number" name="num">
+            </div>
+            <div class="form-group">
+                <label for="">班级：</label>
+                <select name="class" id="" class="form-control">
+                    <option value="UAIF1907">UAIF1907</option>
+                    <option value="UAIF1901">UAIF1901</option>
+                    <option value="UAIF1902">UAIF1902</option>
+                </select>
+            </div>
+            <button class="btn btn-success">提交</button>
+    </div>
+
+</body>
+<style>
+    .editBox{
+        width:500px;
+        height:500px;
+        border:1px solid #333;
+        background-color:#fff;
+        position:absolute;
+        top:0;
+        bottom:0;
+        left:0;
+        right:0;
+        margin:auto;
+        padding:20px;
+        display: none;
+    }
+
+</style>
+
+</html>
