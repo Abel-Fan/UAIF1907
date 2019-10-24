@@ -21,28 +21,7 @@
             <th>班级</th>
             <th>操作</th>
         </tr>
-        {% for stu in data %}
-        <tr>
-            <td class="id">{{ stu[0] }}</td>
-            <td class="num">{{ stu[1] }}</td>
-            <td class="name">{{ stu[2] }}</td>
-            <td class="sex" val="{{ stu[4] }}">
-                {% if stu[4] == 1%}
-                男
-                {% else %}
-                女
-                {% endif %}
-            </td>
-            <td class="age">{{ stu[3] }}</td>
-            <td class="class">{{ stu[5] }}</td>
-            <td>
-                <button class="btn btn-danger">
-                    <a href="del/{{ stu[0] }}">删除</a>
-                </button>
-                <button class="btn btn-warning edit">编辑</button>
-            </td>
-        </tr>
-        {% endfor %}
+
     </table>
 
     <div class="editBox">
@@ -95,5 +74,62 @@
     }
 
 </style>
+<script>
+    $.ajax({
+        url:"/student/get",
+        type:"get",
+        success:function(data){
+            render(data)
+        }
+    })
 
+    function render(data){
+       for(let item of data.data){
+           $(`
+            <tr>
+                <td class="id" sid="${item[0]}">${data.data.indexOf(item) + 1}</td>
+                <td class="num">${item[1]}</td>
+                <td class="name">${item[2]}</td>
+                <td class="sex" val="${item[4]}">
+                   ${  item[4]==1?'男':女  }
+                </td>
+                <td class="age">${item[3]}</td>
+                <td class="class">${item[5]}</td>
+                <td>
+                    <button class="del btn btn-danger">
+                        删除
+                    </button>
+                    <button class="edit btn btn-warning edit">编辑</button>
+                </td>
+            </tr>
+            `).appendTo($(".table tbody"))
+       }
+    }
+
+
+//    事件委派
+    $("table").click(function(e){
+        let target = $(e.target)
+        if(target.hasClass("del")){
+        //       删除
+            $.ajax({
+                url:"/student/del",
+                type:"delete",
+                data:{id:target.parents("tr").children('td').eq(0).attr("sid")},
+                success:function(e){
+                    if(e.status=='yes'){
+                        target.parents("tr").detach()
+                        console.log(e.msg)
+                    }else{
+                        console.log(e.msg)
+                    }
+                }
+            })
+        }else if(target.hasClass("edit")){
+        //       修改
+        }
+
+    })
+
+</script>
 </html>

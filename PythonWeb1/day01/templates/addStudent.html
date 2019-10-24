@@ -8,17 +8,13 @@
     <title>Document</title>
     <link rel="stylesheet" href="static/css/bootstrap.min.css">
     <link rel="stylesheet" href="static/css/add.css">
+    <script src="static/js/jquery-3.4.1.min.js"></script>
 </head>
-<style></style>
 <body>
     <div class="box">
-        <form action="add" method="post">
-            <!--
-                action:
-            -->
             <div class="form-group">
                 <label for="name">姓名:</label>
-                <input  class="form-control" type="text" name="name" id="name">
+                <input class="form-control" type="text" name="name" id="name">
             </div>
             <div class="form-group">
                 <label for="">性别：</label>
@@ -41,8 +37,37 @@
                     <option value="UAIF1902">UAIF1902</option>
                 </select>
             </div>
-            <button class="btn btn-success">提交</button>
-        </form>
+            <button class="btn btn-success submit">提交</button>
+
     </div>
 </body>
+<script>
+    $(".submit").click(function(){
+        //    验证通过
+        alert(123)
+        $.ajax({
+            url:'/student/add',
+            type:"post",
+            data:{
+                name:$("[name=name]").val(),
+                age:$("[name=age]").val(),
+                sex:$("[name=sex]").val(),
+                num:$("[name=num]").val(),
+                'class':$("[name=class]").val(),
+            },
+            success:function(e){
+                console.log(e)
+                if(e.status=="yes"){
+                    if(confirm("添加成功是否继续?")){
+                        // 清除表单数据
+                        console.log("清除表单数据")
+                    }else{
+                        // 跳转到首页
+                        location.href = "/student"
+                    }
+                }
+            }
+        })
+    })
+</script>
 </html>
