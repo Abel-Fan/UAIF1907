@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>教务系统</title>
+    <link rel="stylesheet" href="static/common.css">
+</head>
+<style>
+    body,html{
+        width:100%;
+        height:100%;
+        overflow: hidden;
+    }
+    header{
+        width:100%;
+        height:100px;
+        background-color:lightblue;
+    }
+    main{
+        width:100%;
+        height:calc(100% - 100px);
+        display: flex;
+    }
+    aside{
+        width:200px;
+        height:100%;
+        background-color:lightskyblue;
+        display: block;
+        padding:20px;
+    }
+    .main{
+        width: calc(100% - 200px);
+        height:100%;
+        background-color:#fff;
+        padding:20px;
+    }
+    li{
+        padding:10px 0;
+    }
+    a{
+        font-size:20px;
+        color:#fff;
+    }
+    iframe{
+        width: calc(100% - 40px);
+        height:calc(100% - 40px);
+        overflow: auto;
+    }
+</style>
+<body>
+    <header>
+        <a href="/loginout">退出登录</a>
+    </header>
+    <main>
+        <aside>
+            <ul>
+                <li>
+                    <a href="/student" target="iframe">学生信息管理</a>
+                </li>
+                <li>
+                    <a href="/teacher" target="iframe">教师信息管理</a>
+                </li>
+                <li>
+                    <a href="/class" target="iframe">班级信息管理</a>
+                </li>
+            </ul>
+        </aside>
+        <div class="main">
+            <iframe src="" name="iframe" frameborder="0"></iframe>
+        </div>
+    </main>
+</body>
+</html>
