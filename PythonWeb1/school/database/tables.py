@@ -13,7 +13,7 @@ class Admins(Base):
 class Classes(Base):
     __tablename__ ="classes"
     id = Column(Integer, primary_key=True)
-    name = Column(String)
+    username = Column(String)
     ctime = Column(TIMESTAMP)
     utime = Column(TIMESTAMP)
     teacher = relationship("Teachers")
