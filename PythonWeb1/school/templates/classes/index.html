@@ -26,9 +26,17 @@
             <th>操纵</th>
         </tr>
 
-    </table>
 
-    <form style="width:500px;border:1px solid #ccc;padding:20px;margin-top:40px;" >
+    </table>
+    <div class="pageBox">
+        <button class="btn btn-default" id="prev">上一页</button>
+        <div style="display:inline-block;" id="page">
+
+        </div>
+        <button class="btn btn-default" id="next">下一页</button>
+    </div>
+
+    <form action="javascript:;" style="width:500px;border:1px solid #ccc;padding:20px;margin-top:40px;" >
         <h4>添加班级</h4>
       <div class="form-group">
         <label for="exampleInputEmail1">班级名</label>
@@ -41,34 +49,103 @@
     $("[type=submit]").click(function(){
     //    验证
         $.ajax({
-            url:"/classes/add",
+            url:"/api/classes/",
             type:"post",
             data:{
                 username:$("[name=username]").val()
             },
             success:function(en){
-
-                console.log(en)
-                if(en.status=="yes"){
-                    // 成功 插入新班级到表格中
-                    $(`
+                if(en.data){
+                    let num = Number($("table").attr("num"))+1
+                     $(`
                         <tr>
-                            <td>1</td>
-                            <td>UAIF1907</td>
-                            <td>2019</td>
-                            <td>2019</td>
+                            <td>${num}</td>
+                            <td>${en.data.username}</td>
+                            <td>${en.data.ctime}</td>
+                            <td>${en.data.utime}</td>
                             <td>
                                 <button class="btn btn-success">编辑</button>
-                                <button class="btn btn-danger">删除</button>
+                                <button class="btn btn-danger">编辑</button>
                             </td>
                         </tr>
-                    `).appendTo("table tbody")
-                }else{
-                    // 失败 弹出提示信息
-                    alert(en.msg)
+                    `).appendTo($("table tbody"))
                 }
+
+
             }
         })
     })
+
+    $.ajax({
+        url:"/api/classes/1/3",
+        type:"get",
+        success:function(e){
+            $('table').attr("num",e.data.length)
+            for(let i in e.data){
+                $(`
+                    <tr>
+                        <td>${ Number(i)+1}</td>
+                        <td>${e.data[i].username}</td>
+                        <td>${e.data[i].ctime}</td>
+                        <td>${e.data[i].utime}</td>
+                        <td>
+                            <button class="btn btn-success">编辑</button>
+                            <button class="btn btn-danger">编辑</button>
+                        </td>
+                    </tr>
+                `).appendTo($("table tbody"))
+            }
+            for(let i=1;i<=e.pagenum;i++){
+                $(`<button class="btn btn-default">${i}</button>`).appendTo($("#page"))
+            }
+        }
+
+    })
+    $(".pageBox").attr("index",1)
+    $("#prev").hide()
+
+    $("#next").click(function(){
+
+        let num = Number($(".pageBox").attr('index')) +1
+        $(".pageBox").attr('index',num)
+        alert(num)
+        if(num>=2){
+            $("#prev").show()
+        }
+
+
+
+        $.ajax({
+            url:"/api/classes/"+num+"/3",
+        type:"get",
+        success:function(e){
+            $('table').attr("num",e.data.length)
+            $("table tbody").html("")
+            for(let i in e.data){
+                $(`
+                    <tr>
+                        <td>${ Number(i)+1}</td>
+                        <td>${e.data[i].username}</td>
+                        <td>${e.data[i].ctime}</td>
+                        <td>${e.data[i].utime}</td>
+                        <td>
+                            <button class="btn btn-success">编辑</button>
+                            <button class="btn btn-danger">编辑</button>
+                        </td>
+                    </tr>
+                `).appendTo($("table tbody"))
+            }
+            $("#page").html("")
+            for(let i=1;i<=e.pagenum;i++){
+                $(`<button class="btn btn-default">${i}</button>`).appendTo($("#page"))
+            }
+        }
+        })
+
+    })
+
+
+
+
 </script>
 </html>

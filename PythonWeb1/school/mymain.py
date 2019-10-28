@@ -6,7 +6,7 @@ from myblueprints.classes import classes
 import os
 from flask_login import LoginManager,UserMixin
 from flask_restful import Api
-from myuris.classesuri import Classes,ClassesList
+from myuris.classesuri import Classes,ClassesList,ClassesPage
 
 
 
@@ -42,4 +42,5 @@ def createApp():
     # 注册接口 注册uri
     api.add_resource(Classes,'/api/classes/<int:id>',endpoint="classes")
     api.add_resource(ClassesList,'/api/classes/',endpoint="classeslist")
+    api.add_resource(ClassesPage,'/api/classes/<int:page>/<int:limit>/',endpoint="classespage")
     return app
