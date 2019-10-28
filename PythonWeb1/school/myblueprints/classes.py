@@ -8,6 +8,18 @@ classes = Blueprint("classes",__name__,url_prefix="/classes")
 def index():
     return render_template("classes/index.html")
 
+@classes.route("/classes",methods=['GET'])
+def classesuri():
+    if request.method == "GET":
+        cid = request.args.get('id',None)
+        if cid:
+            pass
+        else:
+            data = session.query(Classes).all()
+            print(data)
+            return jsonify({'code':200,'msg':'ok'})
+
+
 @classes.route("/add",methods=['POST'])
 def add():
     username = request.form['username']
