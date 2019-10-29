@@ -6,6 +6,26 @@ from datetime import datetime
 import math
 
 
+from database.tables import Admins,Teachers,Students,verify_auth_token
+# flask-HTTPauth验证
+from flask_httpauth import HTTPTokenAuth
+
+auth = HTTPTokenAuth(scheme="JWT")
+
+# 验证规则
+# 从 requests  Authorization 获取 token ,并且 token的前缀 必须加  JWT
+@auth.verify_token
+def verify_token(token):  # 验证成功返回 True 验证失败返回False
+    print('token',token)
+    print(verify_auth_token(token))
+    return verify_auth_token(token)
+
+
+
+
+
+
+
 classes_fields = {
     'id':fields.Integer,
     'username':fields.String,
@@ -21,6 +41,7 @@ def EditTime(item):
 
 # 班级分页
 class ClassesPage(Resource):
+    @auth.login_required
     def get(self,page,limit):
         start = (page-1)*limit
         data = session.query(Cla).limit(limit).offset(start)
@@ -32,11 +53,13 @@ class ClassesPage(Resource):
 
 # 获取班级列表信息
 class ClassesList(Resource):
+
     def __init__(self):
         self.reqparse = reqparse.RequestParser()
         self.reqparse.add_argument("username",type=str,required=True,help="username参数不正确")
         super().__init__()
 
+    @auth.login_required
     def get(self):
         data = session.query(Cla).all()
         print(data)

@@ -79,6 +79,9 @@
     $.ajax({
         url:"/api/classes/1/3",
         type:"get",
+        headers:{
+          Authorization:"JWT "+localStorage.token
+        },
         success:function(e){
             $('table').attr("num",e.data.length)
             for(let i in e.data){

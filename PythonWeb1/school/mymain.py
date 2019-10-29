@@ -8,13 +8,14 @@ from flask_login import LoginManager,UserMixin
 from flask_restful import Api
 from myuris.classesuri import Classes,ClassesList,ClassesPage
 
-
+from database.tables import secret_key
+import requests
 
 def createApp():
     # 实例化应用
     app = Flask(__name__)
     # 设置密钥
-    app.secret_key = os.urandom(16)
+    app.secret_key = secret_key
     # 加载蓝图
     app.register_blueprint(index)
     app.register_blueprint(student)

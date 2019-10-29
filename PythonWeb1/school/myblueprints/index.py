@@ -3,6 +3,7 @@ from util.myutil import islogin
 from flask_login import login_user,UserMixin,login_required,logout_user
 from database.db import session
 from database.tables import Admins,Teachers,Students
+
 # 创建登录用户
 class User(UserMixin):
     pass
@@ -10,11 +11,14 @@ class User(UserMixin):
 
 index = Blueprint("index",__name__,url_prefix="/")
 
+
+
+
 @index.route("/")
-# @islogin
 @login_required
 def indexs():
     return render_template("index/index.html")
+
 
 @index.route("/login",methods=['GET','POST'])
 def login():
@@ -38,7 +42,10 @@ def login():
                     user = User()
                     user.id = username
                     login_user(user)
-                    return jsonify({'code': 200, 'status': 'yes', 'msg': '管理员登录成功'})
+                    token = user1.generate_auth_token()  #{ id:1,type:2}
+                    return jsonify(
+                        {'code': 200, 'status': 'yes', 'msg': '管理员登录成功','token':token}
+                    )
                 else:
                     return jsonify({'code': 200, 'status': 'no', 'msg': '密码错误'})
 

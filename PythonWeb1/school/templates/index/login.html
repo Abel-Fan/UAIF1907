@@ -59,8 +59,8 @@
                 type:$("[name=type]").val(),
             },
             success:function(en){
-                console.log(en)
                 if(en.status=="yes"){
+                    localStorage.token = en.token
                     location.href="/"
                 }else{
                     alert(en.msg)
